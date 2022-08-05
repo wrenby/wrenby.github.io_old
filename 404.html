@@ -6,14 +6,43 @@
   <link rel="icon" href="/favicon.svg">
 
   <script>
-    function snap_tooltip(term_obj) {
-      var tooltip = term_obj.firstElementChild;
-      var obj_rect = term_obj.getBoundingClientRect();
-      var tooltip_rect = tooltip.getBoundingClientRect();
+    const definitions = {"arc-minute":"1/60 of a degree, or 1/21600 of a full circle","arc-second":"1/360 of a degree, or 1/129600 of a full circle","arp":"Atlas of Peculiar Galaxies, published in 1966 by Halton Arp","c":"Caldwell Catalogue, a list of objects for observation by amateur astronomers, published in 1995 by Patrick Moore","ced":"Cederblad Catalogue, a list of bright gaseous nebulae published in 1948 by Sven Cederblad","cr":"A catalogue of 471 open clusters published in 1931 by Per Collinder","dec":"Declination, the celestial equivalent of latitude","dither":"A technique to reduce noise due to \u003ca href='https://en.wikipedia.org/wiki/Color_filter_array'\u003e filter arrays\u003c/a\u003e and electronic interference from the camera, accomplished by moving the frame slightly between exposures","dithering":"A technique to reduce noise due to \u003ca href='https://en.wikipedia.org/wiki/Color_filter_array'\u003ecolor filter arrays\u003c/a\u003e and electronic interference from the camera, accomplished by moving the frame slightly between exposures","emission nebula":"A cloud of gas emitting light of certain wavelength due to quantum behavior. Normally hydrogen, ionized by a nearby star that formed from the same gas","ha":"The 626nm wavelength (deep red) light emitted when an electron in a hydrogen atom falls from its third energy level to its second","hydrogen alpha":"The 626nm wavelength (deep red) light emitted when an electron in a hydrogen atom falls from its third energy level to its second","ic":"Index Catalogue, the first major update to the ubiquitous New General Catalogue, published in two parts in 1895 and 1908 by John Louis Emil Dreyer","j2000":"A method of standardizing the coordinates of moving objects by using their location on Jan 1, 2000","lbn":"Lynds' Catalogue of Bright Nebulae, published in 1965 by Beverly Lynds","ldn":"Lynds' Catalogue of Dark Nebulae, published in 1962 by Beverly Lynds","ngc":"New General Catalogue, a list of various types of deep-sky objects published in 1888 by John Louis Emil Dreyer","ra":"Right Ascension, the celestial equivalent of longitude","sh2":"Catalogue of H II Regions (ionized hydrogen nebulae), published in 1959 by Stewart Sharpless","stack":"A post-processing technique used to smooth out noise in an image by averaging the data from several captures into one while removing outliers","stacking":"A post-processing technique used to smooth out noise in an image by averaging the data from several captures into one while removing outliers","vdb":"A Study of Reflection Nebulae, published in 1966 by Sidney van den Bergh"};
+
+    var tooltip_count = 0;
+
+    function create_tooltip(term_elem) {
+      const term = term_elem.getAttribute("data-term");
+      const defn = definitions[term];
+      const tooltip_id = `tooltip-${++tooltip_count}`;
+
+      term.setAttribute("aria-describedby", tooltip_id);
+      term.addEventListener("mouseover", snap_tooltip);
+      term.addEventListener("resize", snap_tooltip);
+
+      var outer = document.createElement("span");
+      outer.setAttribute("class", "definition-outer");
+      outer.setAttribute("role", "tooltip");
+      outer.setAttribute("id", tooltip_id);
+
+      var inner = document.createElement("span");
+      inner.setAttribute("class", "definition-inner");
+      inner.setAttribute("id", tooltip_id);
+      inner.innerHTML = `fuck ${defn}`;
+
+      outer.appendChild(inner);
+      term_elem.appendChild(outer);
+    }
+
+    function snap_tooltip(ev) {
+      var term_elem = ev.target;
+      console.debug(ev);
+      var tooltip = term_elem.firstElementChild;
+      const obj_rect = term_elem.getBoundingClientRect();
+      const tooltip_rect = tooltip.getBoundingClientRect();
 
       var goalX = obj_rect.left + obj_rect.width/2 - tooltip_rect.width/2;
       var goalY = obj_rect.top - tooltip_rect.height;
-      var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 
       goalX = Math.min(vw - tooltip_rect.width, Math.max(goalX, 0));
       if (goalY < 0)
@@ -22,6 +51,14 @@
       tooltip.style.top = (goalY + window.pageYOffset) + "px";
       tooltip.style.left = (goalX + window.pageXOffset) + "px";
     }
+
+    document.addEventListener("load", function() {
+      var terms = document.getElementsByClassName("term");
+
+      for (t in terms) {
+        create_tooltip(t);
+      }
+    });
   </script>
 
   <title>
@@ -29,8 +66,8 @@
   </title>
   <meta name="description" content="" /><meta name="generator" content="Hugo 0.101.0" /><link
     rel="stylesheet"
-    href="https://astro.wren.dev/css/styles.min.25de4ca083740152ec8c967077f71c11c2fbefe743711be90d7fb049aaf11f5e.css"
-    integrity="sha256-Jd5MoIN0AVLsjJZwd/ccEcL77+dDcRvpDX+wSarxH14="
+    href="https://astro.wren.dev/css/styles.min.0cf3e2d42a21a0ad955f475c2216b982291bad2184e57470532bd6f67e9dccd8.css"
+    integrity="sha256-DPPi1CohoK2VX0dcIha5gikbrSGE5XRwUyvW9n6dzNg="
   />
   
   

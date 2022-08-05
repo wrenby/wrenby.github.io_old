@@ -6,14 +6,43 @@
   <link rel="icon" href="/favicon.svg">
 
   <script>
-    function snap_tooltip(term_obj) {
-      var tooltip = term_obj.firstElementChild;
-      var obj_rect = term_obj.getBoundingClientRect();
-      var tooltip_rect = tooltip.getBoundingClientRect();
+    const definitions = {"arc-minute":"1/60 of a degree, or 1/21600 of a full circle","arc-second":"1/360 of a degree, or 1/129600 of a full circle","arp":"Atlas of Peculiar Galaxies, published in 1966 by Halton Arp","c":"Caldwell Catalogue, a list of objects for observation by amateur astronomers, published in 1995 by Patrick Moore","ced":"Cederblad Catalogue, a list of bright gaseous nebulae published in 1948 by Sven Cederblad","cr":"A catalogue of 471 open clusters published in 1931 by Per Collinder","dec":"Declination, the celestial equivalent of latitude","dither":"A technique to reduce noise due to \u003ca href='https://en.wikipedia.org/wiki/Color_filter_array'\u003e filter arrays\u003c/a\u003e and electronic interference from the camera, accomplished by moving the frame slightly between exposures","dithering":"A technique to reduce noise due to \u003ca href='https://en.wikipedia.org/wiki/Color_filter_array'\u003ecolor filter arrays\u003c/a\u003e and electronic interference from the camera, accomplished by moving the frame slightly between exposures","emission nebula":"A cloud of gas emitting light of certain wavelength due to quantum behavior. Normally hydrogen, ionized by a nearby star that formed from the same gas","ha":"The 626nm wavelength (deep red) light emitted when an electron in a hydrogen atom falls from its third energy level to its second","hydrogen alpha":"The 626nm wavelength (deep red) light emitted when an electron in a hydrogen atom falls from its third energy level to its second","ic":"Index Catalogue, the first major update to the ubiquitous New General Catalogue, published in two parts in 1895 and 1908 by John Louis Emil Dreyer","j2000":"A method of standardizing the coordinates of moving objects by using their location on Jan 1, 2000","lbn":"Lynds' Catalogue of Bright Nebulae, published in 1965 by Beverly Lynds","ldn":"Lynds' Catalogue of Dark Nebulae, published in 1962 by Beverly Lynds","ngc":"New General Catalogue, a list of various types of deep-sky objects published in 1888 by John Louis Emil Dreyer","ra":"Right Ascension, the celestial equivalent of longitude","sh2":"Catalogue of H II Regions (ionized hydrogen nebulae), published in 1959 by Stewart Sharpless","stack":"A post-processing technique used to smooth out noise in an image by averaging the data from several captures into one while removing outliers","stacking":"A post-processing technique used to smooth out noise in an image by averaging the data from several captures into one while removing outliers","vdb":"A Study of Reflection Nebulae, published in 1966 by Sidney van den Bergh"};
+
+    var tooltip_count = 0;
+
+    function create_tooltip(term_elem) {
+      const term = term_elem.getAttribute("data-term");
+      const defn = definitions[term];
+      const tooltip_id = `tooltip-${++tooltip_count}`;
+
+      term.setAttribute("aria-describedby", tooltip_id);
+      term.addEventListener("mouseover", snap_tooltip);
+      term.addEventListener("resize", snap_tooltip);
+
+      var outer = document.createElement("span");
+      outer.setAttribute("class", "definition-outer");
+      outer.setAttribute("role", "tooltip");
+      outer.setAttribute("id", tooltip_id);
+
+      var inner = document.createElement("span");
+      inner.setAttribute("class", "definition-inner");
+      inner.setAttribute("id", tooltip_id);
+      inner.innerHTML = `fuck ${defn}`;
+
+      outer.appendChild(inner);
+      term_elem.appendChild(outer);
+    }
+
+    function snap_tooltip(ev) {
+      var term_elem = ev.target;
+      console.debug(ev);
+      var tooltip = term_elem.firstElementChild;
+      const obj_rect = term_elem.getBoundingClientRect();
+      const tooltip_rect = tooltip.getBoundingClientRect();
 
       var goalX = obj_rect.left + obj_rect.width/2 - tooltip_rect.width/2;
       var goalY = obj_rect.top - tooltip_rect.height;
-      var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 
       goalX = Math.min(vw - tooltip_rect.width, Math.max(goalX, 0));
       if (goalY < 0)
@@ -22,6 +51,14 @@
       tooltip.style.top = (goalY + window.pageYOffset) + "px";
       tooltip.style.left = (goalX + window.pageXOffset) + "px";
     }
+
+    document.addEventListener("load", function() {
+      var terms = document.getElementsByClassName("term");
+
+      for (t in terms) {
+        create_tooltip(t);
+      }
+    });
   </script>
 
   <title>
@@ -29,8 +66,8 @@
   </title>
   <meta name="description" content="Part of a supernova remnant in the constellation Cygnus" /><meta name="generator" content="Hugo 0.101.0" /><link
     rel="stylesheet"
-    href="https://astro.wren.dev/css/styles.min.25de4ca083740152ec8c967077f71c11c2fbefe743711be90d7fb049aaf11f5e.css"
-    integrity="sha256-Jd5MoIN0AVLsjJZwd/ccEcL77+dDcRvpDX+wSarxH14="
+    href="https://astro.wren.dev/css/styles.min.0cf3e2d42a21a0ad955f475c2216b982291bad2184e57470532bd6f67e9dccd8.css"
+    integrity="sha256-DPPi1CohoK2VX0dcIha5gikbrSGE5XRwUyvW9n6dzNg="
   />
   
   
@@ -52,7 +89,7 @@
   <meta itemprop="name" content="C 33, The Eastern Veil Nebula">
 <meta itemprop="description" content="Part of a supernova remnant in the constellation Cygnus"><meta itemprop="datePublished" content="2022-05-30T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-05-30T00:00:00+00:00" />
-<meta itemprop="wordCount" content="298">
+<meta itemprop="wordCount" content="175">
 <meta itemprop="keywords" content="deep-sky,nebula,supernova-remnant,emission-nebula," />
 </head>
 
@@ -154,17 +191,8 @@
           <svg class="inline-block" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 1 1" stroke="currentColor" stroke-opacity="1" fill="none" stroke-width ="0.1px">
             <path d="M 0.65115525,0.38465321 A 0.15115766,0.13323815 0 0 1 0.49999766,0.51789141 0.15115766,0.13323815 0 0 1 0.3488398,0.38465321 0.15115766,0.13323815 0 0 1 0.49999766,0.25141501 0.15115766,0.13323815 0 0 1 0.65115525,0.38465321 Z" />
             <path style="stroke-linecap:butt;stroke-linejoin:miter" d="m 0.83260918,0.35724021 c -0.00108,0.0882632 -0.063641,0.24210929 -0.31319537,0.53148933 -0.0107593,0.012476 -0.028443,0.0125148 -0.0392774,8.349e-5 C 0.25626899,0.63193369 0.18285331,0.48198965 0.16948767,0.38580177 c -0.002157,-0.0155668 -0.002686,-0.0410861 -0.001198,-0.0567266 0.008123,-0.0849283 0.0582978,-0.16243335 0.13720766,-0.21225886 0.0144338,-0.009113 0.0393992,-0.0218826 0.055529,-0.0283957 0.0981092,-0.03961602 0.2128508,-0.03516436 0.30714361,0.0130201 0.10360067,0.0529408 0.16644137,0.15070061 0.1644298,0.25579883" />
-          </svg><span class="term" onmouseover="snap_tooltip(this)" onresize="snap_tooltip(this)">RA<span class="definition-outer">
-<span class="definition-inner text-sm">Right Ascension, the celestial equivalent of longitude</span>
-</span>
-</span>/<span class="term" onmouseover="snap_tooltip(this)" onresize="snap_tooltip(this)">Dec<span class="definition-outer">
-<span class="definition-inner text-sm">Declination, the celestial equivalent of latitude</span>
-</span>
-</span>
-          (<span class="term" onmouseover="snap_tooltip(this)" onresize="snap_tooltip(this)">J2000<span class="definition-outer">
-<span class="definition-inner text-sm">A method of standardizing the coordinates of moving objects by using their location on Jan 1, 2000</span>
-</span>
-</span>):
+          </svg><span class="term" data-term=ra>RA</span>/<span class="term" data-term=dec>Dec</span>
+          (<span class="term" data-term=j2000>J2000</span>):
           20h56m00s/&#43;31°26&#39;12&#34;
         </div>
       
@@ -190,33 +218,15 @@
         </div>
     </h5>
 
-    <p>The Eastern Veil Nebula (also known as <span class="term" onmouseover="snap_tooltip(this)" onresize="snap_tooltip(this)">C<span class="definition-outer">
-<span class="definition-inner text-sm">Caldwell Catalogue, a list of objects for observation by amateur astronomers, published in 1995 by Patrick Moore</span>
-</span>
-</span>
- 33, <span class="term" onmouseover="snap_tooltip(this)" onresize="snap_tooltip(this)">NGC<span class="definition-outer">
-<span class="definition-inner text-sm">New General Catalogue, a list of various types of deep-sky objects published in 1888 by John Louis Emil Dreyer</span>
-</span>
-</span>
- 6992, and <span class="term" onmouseover="snap_tooltip(this)" onresize="snap_tooltip(this)">Ced<span class="definition-outer">
-<span class="definition-inner text-sm">Cederblad Catalogue, a list of bright gaseous nebulae published in 1948 by Sven Cederblad</span>
-</span>
-</span>
+    <p>The Eastern Veil Nebula (also known as <span class="term" data-term=c>C</span>
+ 33, <span class="term" data-term=ngc>NGC</span>
+ 6992, and <span class="term" data-term=ced>Ced</span>
  182b) is part of a large 
-  <span class="term" onmouseover="snap_tooltip(this)" onresize="snap_tooltip(this)">emissive<span class="definition-outer">
-<span class="definition-inner text-sm">A cloud of gas emitting light of certain wavelength due to quantum behavior. Normally hydrogen, ionized by a nearby star that formed from the same gas</span>
-</span>
-</span>
+  <span class="term" data-term=emission&#32;nebula>emissive</span>
 
  supernova remnant called the Cygnus Loop. The Cygnus Loop in its entirety is estimated be around 10 to 20 thousand years old, 2670 lightyears away from Earth, and 120 lightyears across. The Eastern Veil is a portion of this larger nebula that emits relatively bright light in visible wavelengths due to high concentrations of oxygen, sulphur, and hydrogen. It gets its wispy appearance from shock fronts caused by the initial explosion.</p>
-<p>Captured over two nights using a Fujifilm X-A5 and a GSO 6&quot; F/4 mounted on a Celestron AVX, and processed with Siril and GIMP. This image is a <span class="term" onmouseover="snap_tooltip(this)" onresize="snap_tooltip(this)">stack<span class="definition-outer">
-<span class="definition-inner text-sm">A post-processing technique used to smooth out noise in an image by averaging the data from several captures into one while removing outliers</span>
-</span>
-</span>
- of 6.6 hours total integration time distributed over 265 exposures at 1000 ISO. The second night was calibrated with 40 biases, flats, and darks, but the first night only had flats because I forgot do take any biases or darks. I was using a pretty aggressive <span class="term" onmouseover="snap_tooltip(this)" onresize="snap_tooltip(this)">dither<span class="definition-outer">
-<span class="definition-inner text-sm">A technique to reduce noise due to <a href='https://en.wikipedia.org/wiki/Color_filter_array'>color filter arrays</a> and electronic interference from the camera, accomplished by moving the frame slightly between exposures</span>
-</span>
-</span>
+<p>Captured over two nights using a Fujifilm X-A5 and a GSO 6&quot; F/4 mounted on a Celestron AVX, and processed with Siril and GIMP. This image is a <span class="term" data-term=stack>stack</span>
+ of 6.6 hours total integration time distributed over 265 exposures at 1000 ISO. The second night was calibrated with 40 biases, flats, and darks, but the first night only had flats because I forgot do take any biases or darks. I was using a pretty aggressive <span class="term" data-term=dither>dither</span>
  though, so it worked out well enough 🤷</p>
 
   </article><div class="bg-blue-100 dark:bg-gray-900">
@@ -319,7 +329,7 @@
       
       <li>
         <a
-          href="https://astro.wren.dev/index.xml"
+          href="/index.xml"
           target="_blank"
           rel="noopener"
           aria-label="RSS"
