@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Galleries on Nights of Wren</title>
+    <link>https://astro.wren.dev/gallery/</link>
+    <description>Recent content in Galleries on Nights of Wren</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 30 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://astro.wren.dev/gallery/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C 33, The Eastern Veil Nebula</title>
+      <link>https://astro.wren.dev/gallery/2022-05-30-c33-eastern-veil-neb/</link>
+      <pubDate>Mon, 30 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://astro.wren.dev/gallery/2022-05-30-c33-eastern-veil-neb/</guid>
+      <description>The Eastern Veil Nebula (also known as C Caldwell Catalogue, a list of objects for observation by amateur astronomers, published in 1995 by Patrick Moore 33, NGC New General Catalogue, a list of various types of deep-sky objects published in 1888 by John Louis Emil Dreyer 6992, and Ced Cederblad Catalogue, a list of bright gaseous nebulae published in 1948 by Sven Cederblad 182b) is part of a large emissive A cloud of gas emitting light of certain wavelength due to quantum behavior.</description>
+    </item>
+    
+    <item>
+      <title>Total Lunar Eclipse</title>
+      <link>https://astro.wren.dev/gallery/2022-05-15-lunar-eclipse/</link>
+      <pubDate>Sun, 15 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://astro.wren.dev/gallery/2022-05-15-lunar-eclipse/</guid>
+      <description>During a lunar eclipse, the moon appears red due to the way the light interacts with Earth&amp;rsquo;s atmosphere. Since the Earth is blocking direct sunlight, the only light it can receive has been refracted through the atmosphere, and the photons most likely to survive the trip are those with longer wavelengths: red light. This phenomenon is called Rayleigh Scattering, and it&amp;rsquo;s also responsible for the color of sunsets and the sky during the day.</description>
+    </item>
+    
+    <item>
+      <title>IC 5067, The Pelican Nebula</title>
+      <link>https://astro.wren.dev/gallery/2022-05-10-ic5067-pelican-neb/</link>
+      <pubDate>Tue, 10 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://astro.wren.dev/gallery/2022-05-10-ic5067-pelican-neb/</guid>
+      <description>The smaller next-door neighbor of the North America Nebula, the Pelican Nebula (also known as IC Index Catalogue, the first major update to the ubiquitous New General Catalogue, published in two parts in 1895 and 1908 by John Louis Emil Dreyer 5067, LBN Lynds&#39; Catalogue of Bright Nebulae, published in 1965 by Beverly Lynds 353, and Ced Cederblad Catalogue, a list of bright gaseous nebulae published in 1948 by Sven Cederblad 183a) is a hydrogen alpha The 626nm wavelength (deep red) light emitted when an electron in a hydrogen atom falls from its third energy level to its second emission nebula A cloud of gas emitting light of certain wavelength due to quantum behavior.</description>
+    </item>
+    
+  </channel>
+</rss>
