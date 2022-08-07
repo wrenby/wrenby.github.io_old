@@ -6,12 +6,30 @@
   <link rel="icon" href="/favicon.svg">
 
   <script>
-    const definitions = {"arc-minute":"1/60 of a degree, or 1/21600 of a full circle","arc-second":"1/360 of a degree, or 1/129600 of a full circle","arp":"Atlas of Peculiar Galaxies, published in 1966 by Halton Arp","c":"Caldwell Catalogue, a list of objects for observation by amateur astronomers, published in 1995 by Patrick Moore","ced":"Cederblad Catalogue, a list of bright gaseous nebulae published in 1948 by Sven Cederblad","cepheid variable":"A class of stars discovered by Henrietta Swan Leavitt in 1908 which pulse at a frequency proportional to their absolute brightness, used to measure large distances by comparing their pulsation frequency to their observed brightness","cr":"A catalogue of 471 open clusters published in 1931 by Per Collinder","dec":"Declination, the celestial equivalent of latitude","dither":"A technique to reduce noise due to \u003ca href='https://en.wikipedia.org/wiki/Color_filter_array'\u003e filter arrays\u003c/a\u003e and electronic interference from the camera, accomplished by moving the frame slightly between exposures","dithering":"A technique to reduce noise due to \u003ca href='https://en.wikipedia.org/wiki/Color_filter_array'\u003ecolor filter arrays\u003c/a\u003e and electronic interference from the camera, accomplished by moving the frame slightly between exposures","emission nebula":"A cloud of gas emitting light of certain wavelength due to quantum behavior. Normally hydrogen, ionized by a nearby star that formed from the same gas","ha":"The 626nm wavelength (deep red) light emitted when an electron in a hydrogen atom falls from its third energy level to its second","hydrogen alpha":"The 626nm wavelength (deep red) light emitted when an electron in a hydrogen atom falls from its third energy level to its second","ic":"Index Catalogue, the first major update to the ubiquitous New General Catalogue, published in two parts in 1895 and 1908 by John Louis Emil Dreyer","j2000":"A method of standardizing the coordinates of moving objects by using their location on Jan 1, 2000","lbn":"Lynds' Catalogue of Bright Nebulae, published in 1965 by Beverly Lynds","ldn":"Lynds' Catalogue of Dark Nebulae, published in 1962 by Beverly Lynds","m":"A list of 110 Things That Are Not Comets, compiled in 1774 by frustrated comet hunter Charles Messier. Contains most deep-sky objects easily observable in the Northern Hemisphere.","ngc":"New General Catalogue, a comprehensive list of various types of deep-sky objects known at the time, published in 1888 by John Louis Emil Dreyer","pk":"Perek and Kohoutek's 1964 catalogue of all planetary nebulae in the Milky Way known at time of publication","ra":"Right Ascension, the celestial equivalent of longitude","sh2":"Catalogue of H II Regions (ionized hydrogen nebulae), published in 1959 by Stewart Sharpless","stack":"A post-processing technique used to smooth out noise in an image by averaging the data from several captures into one while removing outliers","stacking":"A post-processing technique used to smooth out noise in an image by averaging the data from several captures into one while removing outliers","stellar death":"A star is considered dead when there is no more nuclear fusion occurring in its core, even if what remains may still radiate heat or light","vdb":"A Study of Reflection Nebulae, published in 1966 by Sidney van den Bergh"};
+    fetch("/definitions.json")
+      .then(response => {
+        return response.json();
+      })
+      .then(definitions => {
+        if (document.readySate == "loading") {
+          document.addEventListener("DOMContentLoaded", () => create_all_tooltips(definitions));
+        } else {
+          create_all_tooltips(definitions);
+        }
+      });
 
-    function create_tooltip(term_elem) {
-      const term = term_elem.getAttribute("data-term");
-      const defn = definitions[term];
-      const tooltip_id = `tooltip-${term}`;
+    function create_all_tooltips(definitions) {
+      let terms = document.getElementsByClassName("term");
+      for (t of terms) {
+        const term = t.getAttribute("data-term");
+        create_tooltip(t, term, definitions[term]);
+      }
+      position_all_tooltips();
+      window.addEventListener("resize", position_all_tooltips);
+    }
+
+    function create_tooltip(term_elem, term, defn) {
+      const tooltip_id = `tooltip-${term.replace(" ", "-")}`;
 
       let outer = document.createElement("span");
       outer.setAttribute("class", "definition-outer");
@@ -27,34 +45,36 @@
       term_elem.appendChild(outer);
 
       term_elem.setAttribute("aria-describedby", tooltip_id);
-      term_elem.addEventListener("mouseover", snap_tooltip);
-      term_elem.addEventListener("resize", snap_tooltip);
+      term_elem.addEventListener("mouseover", (ev) => position_tooltip(ev.target));
     }
 
-    function snap_tooltip(ev) {
-      let term_elem = ev.target;
-      let tooltip = term_elem.firstElementChild;
-      const obj_rect = term_elem.getBoundingClientRect();
-      const tooltip_rect = tooltip.getBoundingClientRect();
+    function position_all_tooltips() {
 
-      let goalX = obj_rect.left + obj_rect.width/2 - tooltip_rect.width/2;
-      let goalY = obj_rect.top - tooltip_rect.height;
-      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-
-      goalX = Math.min(vw - tooltip_rect.width, Math.max(goalX, 0));
-      if (goalY < 0)
-        goalY = obj_rect.bottom;
-
-      tooltip.style.top = (goalY + window.pageYOffset) + "px";
-      tooltip.style.left = (goalX + window.pageXOffset) + "px";
-    }
-
-    window.addEventListener("load", function() {
       let terms = document.getElementsByClassName("term");
       for (t of terms) {
-        create_tooltip(t);
+        position_tooltip(t);
       }
-    });
+    }
+
+    function position_tooltip(term_elem) {
+      let tooltip = term_elem.firstElementChild;
+      if (tooltip) {
+        
+        const obj_rect = term_elem.getBoundingClientRect();
+        const tooltip_rect = tooltip.getBoundingClientRect();
+
+        let goalX = obj_rect.left + obj_rect.width/2 - tooltip_rect.width/2;
+        let goalY = obj_rect.top - tooltip_rect.height;
+        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+
+        goalX = Math.min(vw - tooltip_rect.width, Math.max(goalX, 0));
+        if (goalY < 0)
+          goalY = obj_rect.bottom;
+
+        tooltip.style.top = (goalY + window.pageYOffset) + "px";
+        tooltip.style.left = (goalX + window.pageXOffset) + "px";
+      }
+    }
   </script>
 
   <title>
@@ -62,8 +82,8 @@
   </title>
   <meta name="description" content="And its satellite galaxies M 32 and M 110" /><meta name="generator" content="Hugo 0.101.0" /><link
     rel="stylesheet"
-    href="https://astro.wren.dev/css/styles.min.0cf3e2d42a21a0ad955f475c2216b982291bad2184e57470532bd6f67e9dccd8.css"
-    integrity="sha256-DPPi1CohoK2VX0dcIha5gikbrSGE5XRwUyvW9n6dzNg="
+    href="https://astro.wren.dev/css/styles.min.335ddca0f35a70a38cd892e5ade90db71fc2a872b8332bd1768e78fd23309df9.css"
+    integrity="sha256-M13coPNacKOM2JLlrekNtx/CqHK4MyvRdo54/SMwnfk="
   />
   
   
@@ -72,7 +92,7 @@
 <meta property="og:description" content="And its satellite galaxies M 32 and M 110" />
 <meta property="og:type" content="object" />
 <meta property="og:url" content="https://astro.wren.dev/gallery/2022-06-18-m31-andromeda-gal/" />
-<meta property="og:image" content="https://astro.wren.dev/img/2022-06-28%20m31%20andromeda%20gal_hu0e484245fce1534c386824cb5d03c4bc_57516351_1200x628_fill_q90_bgffffff_lanczos_smart1_3.jpg" />
+<meta property="og:image" content="https://astro.wren.dev/img/2022-06-28%20m31%20andromeda%20gal_hu6f45cbf05b03bd6475376d82aea05ccd_58529870_1200x628_fill_q90_bgffffff_lanczos_smart1_3.jpg" />
 <meta property="article:section" content="gallery" />
 <meta property="article:published_time" content="2022-06-28T00:00:00+00:00" />
 <meta property="article:modified_time" content="2022-06-28T00:00:00+00:00" />
@@ -80,7 +100,7 @@
 
 
   <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://astro.wren.dev/img/2022-06-28%20m31%20andromeda%20gal_hu0e484245fce1534c386824cb5d03c4bc_57516351_1200x628_fill_q90_bgffffff_lanczos_smart1_3.jpg" />
+<meta name="twitter:image" content="https://astro.wren.dev/img/2022-06-28%20m31%20andromeda%20gal_hu6f45cbf05b03bd6475376d82aea05ccd_58529870_1200x628_fill_q90_bgffffff_lanczos_smart1_3.jpg" />
 
   <meta itemprop="name" content="M 31, The Andromeda Galaxy">
 <meta itemprop="description" content="And its satellite galaxies M 32 and M 110"><meta itemprop="datePublished" content="2022-06-28T00:00:00+00:00" />
@@ -92,7 +112,7 @@
   <body class="dark:bg-gray-800 dark:text-white relative flex flex-col min-h-screen"><header class="container flex justify-between md:justify-between gap-4 flex-wrap p-6 mx-auto relative">
   <a href="https://astro.wren.dev/" class="capitalize font-extrabold text-2xl">
     
-    <img src="/blist-logo.png" alt="Nights of Wren" class="h-8 max-w-full" />
+    Nights of Wren
     
   </a>
   <button class="mobile-menu-button md:hidden">
@@ -162,8 +182,8 @@
         
         <div class="relative">
           <img
-            srcset=", /img/2022-06-28%20m31%20andromeda%20gal_hu0e484245fce1534c386824cb5d03c4bc_57516351_512x0_resize_q90_bgffffff_lanczos_3.jpg 512w, /img/2022-06-28%20m31%20andromeda%20gal_hu0e484245fce1534c386824cb5d03c4bc_57516351_768x0_resize_q90_bgffffff_lanczos_3.jpg 768w, /img/2022-06-28%20m31%20andromeda%20gal_hu0e484245fce1534c386824cb5d03c4bc_57516351_1024x0_resize_q90_bgffffff_lanczos_3.jpg 1024w"
-            src="/img/2022-06-28%20m31%20andromeda%20gal_hu0e484245fce1534c386824cb5d03c4bc_57516351_1024x0_resize_q90_bgffffff_lanczos_3.jpg"
+            srcset=", /img/2022-06-28%20m31%20andromeda%20gal_hu6f45cbf05b03bd6475376d82aea05ccd_58529870_512x0_resize_q90_bgffffff_lanczos_3.jpg 512w, /img/2022-06-28%20m31%20andromeda%20gal_hu6f45cbf05b03bd6475376d82aea05ccd_58529870_768x0_resize_q90_bgffffff_lanczos_3.jpg 768w, /img/2022-06-28%20m31%20andromeda%20gal_hu6f45cbf05b03bd6475376d82aea05ccd_58529870_1024x0_resize_q90_bgffffff_lanczos_3.jpg 1024w"
+            src="/img/2022-06-28%20m31%20andromeda%20gal_hu6f45cbf05b03bd6475376d82aea05ccd_58529870_1024x0_resize_q90_bgffffff_lanczos_3.jpg"
             sizes="100vw"
             alt=""
             class="rounded-lg shadow-sm w-full object-contain" />
