@@ -5,7 +5,25 @@
     <link>https://astro.wren.dev/tags/</link>
     <description>Recent content in Tags on Nights of Wren</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 28 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://astro.wren.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://astro.wren.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>planet</title>
+      <link>https://astro.wren.dev/tags/planet/</link>
+      <pubDate>Wed, 03 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://astro.wren.dev/tags/planet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>solar-system</title>
+      <link>https://astro.wren.dev/tags/solar-system/</link>
+      <pubDate>Wed, 03 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://astro.wren.dev/tags/solar-system/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>deep-sky</title>
       <link>https://astro.wren.dev/tags/deep-sky/</link>
@@ -75,15 +93,6 @@
       <pubDate>Sun, 15 May 2022 00:00:00 +0000</pubDate>
       
       <guid>https://astro.wren.dev/tags/moon/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>solar-system</title>
-      <link>https://astro.wren.dev/tags/solar-system/</link>
-      <pubDate>Sun, 15 May 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://astro.wren.dev/tags/solar-system/</guid>
       <description></description>
     </item>
     
