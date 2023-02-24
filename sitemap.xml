@@ -2,29 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://astro.wren.dev/gallery/</loc>
-    <lastmod>2022-08-03T00:00:00+00:00</lastmod>
+    <loc>https://astro.wren.dev/tags/deep-sky/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://astro.wren.dev/gallery/2022-08-03-jupiter/</loc>
-    <lastmod>2022-08-03T00:00:00+00:00</lastmod>
+    <loc>https://astro.wren.dev/gallery/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://astro.wren.dev/gallery/2023-02-16-m97-owl-neb/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://astro.wren.dev/tags/messier-object/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://astro.wren.dev/tags/nebula/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://astro.wren.dev/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://astro.wren.dev/tags/planetary-nebula/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://astro.wren.dev/tags/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://astro.wren.dev/gallery/2022-10-11-moon-mosaic/</loc>
+    <lastmod>2022-10-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://astro.wren.dev/tags/moon/</loc>
+    <lastmod>2022-10-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://astro.wren.dev/tags/solar-system/</loc>
+    <lastmod>2022-10-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://astro.wren.dev/gallery/2022-08-03-jupiter/</loc>
     <lastmod>2022-08-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://astro.wren.dev/tags/planet/</loc>
     <lastmod>2022-08-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://astro.wren.dev/tags/solar-system/</loc>
-    <lastmod>2022-08-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://astro.wren.dev/tags/</loc>
-    <lastmod>2022-08-03T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://astro.wren.dev/about/</loc>
     <lastmod>2022-07-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://astro.wren.dev/tags/deep-sky/</loc>
-    <lastmod>2022-06-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://astro.wren.dev/tags/galaxy/</loc>
     <lastmod>2022-06-28T00:00:00+00:00</lastmod>
@@ -32,16 +50,7 @@
     <loc>https://astro.wren.dev/gallery/2022-06-28-m31-andromeda-gal/</loc>
     <lastmod>2022-06-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://astro.wren.dev/tags/messier-object/</loc>
-    <lastmod>2022-06-28T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://astro.wren.dev/gallery/2022-06-18-m27-dumbbell-neb/</loc>
-    <lastmod>2022-06-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://astro.wren.dev/tags/nebula/</loc>
-    <lastmod>2022-06-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://astro.wren.dev/tags/planetary-nebula/</loc>
     <lastmod>2022-06-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://astro.wren.dev/gallery/2022-05-30-c33-eastern-veil-neb/</loc>
@@ -52,9 +61,6 @@
   </url><url>
     <loc>https://astro.wren.dev/tags/supernova-remnant/</loc>
     <lastmod>2022-05-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://astro.wren.dev/tags/moon/</loc>
-    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://astro.wren.dev/gallery/2022-05-15-lunar-eclipse/</loc>
     <lastmod>2022-05-15T00:00:00+00:00</lastmod>

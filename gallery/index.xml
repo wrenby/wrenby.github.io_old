@@ -5,7 +5,25 @@
     <link>https://astro.wren.dev/gallery/</link>
     <description>Recent content in Galleries on Nights of Wren</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 03 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://astro.wren.dev/gallery/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://astro.wren.dev/gallery/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>M 97, The Owl Nebula</title>
+      <link>https://astro.wren.dev/gallery/2023-02-16-m97-owl-neb/</link>
+      <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://astro.wren.dev/gallery/2023-02-16-m97-owl-neb/</guid>
+      <description>What to do with a planetary imaging train after the planets are out of sight? My main camera was out of commission, so I had to make due with the setup I was using: a high-magnification lens paired a camera with very small pixels, on an unguided mount that I never bothered to accurately polar align . Not ideal for dimmer targets, but I figured since the camera I was using had low read noise , I could just take a few hundred or thousand short exposures and still get something useful through the noise.</description>
+    </item>
+    
+    <item>
+      <title>Full Moon Mosaic</title>
+      <link>https://astro.wren.dev/gallery/2022-10-11-moon-mosaic/</link>
+      <pubDate>Tue, 11 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://astro.wren.dev/gallery/2022-10-11-moon-mosaic/</guid>
+      <description>Believe it or not, full moons are generally considered bad news for astrophotographers. Faint details in a target can easily be swamped in the strong glow of the moon, especially when considered in tandem with artificial light pollution, and seasoned lunar photographers tend to prefer the high-contrast view of shadows cast by craters. But, to my good luck, I am not a seasoned lunar photographer, and am just as impressed a full moon as the rest of the world.</description>
+    </item>
+    
     <item>
       <title>Jupiter</title>
       <link>https://astro.wren.dev/gallery/2022-08-03-jupiter/</link>

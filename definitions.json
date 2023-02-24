@@ -5,6 +5,7 @@
     "arc-minute": "1/60 of a degree, or 1/21600 of a full circle",
     "j2000": "A method of standardizing the coordinates of moving objects by using their location on Jan 1, 2000",
 
+    "deep sky": "Basically any celestial object outside of our solar system",
     "cepheid variable": "A class of stars discovered by Henrietta Swan Leavitt in 1908 which pulse at a frequency proportional to their absolute brightness, used to measure large distances by comparing their pulsation frequency to their observed brightness",
     "emission nebula": "A cloud of gas emitting light of certain wavelength due to quantum behavior. Normally hydrogen, ionized by a nearby star that formed from the same gas",
     "hydrogen alpha": "The 626nm wavelength (deep red) light emitted when an electron in a hydrogen atom falls from its third energy level to its second",
@@ -15,6 +16,10 @@
     "dithering": "A technique to reduce noise due to <a href='https://en.wikipedia.org/wiki/Color_filter_array'>color filter arrays</a> and electronic interference from the camera, accomplished by moving the frame slightly between exposures",
     "stack": "A post-processing technique used to smooth out noise in an image by averaging the data from several captures into one while removing outliers",
     "stacking": "A post-processing technique used to smooth out noise in an image by averaging the data from several captures into one while removing outliers",
+    "polar align": "Faint objects or details require long exposure times, but in order for those exposures to not just be streaky blurs, a mount capable of counteracting earth's rotation is needed. Polar alignment is the sensitive process of pointing that mount in the exact right direction to be able to do its job properly.",
+    "imaging train": "Every optical element used to capture the image, including the telescope, the camera, and any filters or lenses in use",
+    "read noise": "Random variation in pixel values caused by the electronics converting captured electrons into voltage and voltage into a digital count",
+    "noise": "Anything causing a change in pixel value other than photons coming from our target, including electrical interference, light pollution, satellite trails, and so on",
 
     "arp": "Atlas of Peculiar Galaxies, published in 1966 by Halton Arp",
     "c": "Caldwell Catalogue, a list of objects for observation by amateur astronomers, published in 1995 by Patrick Moore",
