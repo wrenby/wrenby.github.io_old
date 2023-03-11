@@ -5,85 +5,13 @@
 
   <link rel="icon" href="/favicon.svg">
 
-  <script>
-    fetch("/definitions.json")
-      .then(response => {
-        return response.json();
-      })
-      .then(definitions => {
-        if (document.readySate == "loading") {
-          document.addEventListener("DOMContentLoaded", () => create_all_tooltips(definitions));
-        } else {
-          create_all_tooltips(definitions);
-        }
-      });
-
-    function create_all_tooltips(definitions) {
-      let terms = document.getElementsByClassName("term");
-      for (t of terms) {
-        const term = t.getAttribute("data-term");
-        create_tooltip(t, term, definitions[term]);
-      }
-      position_all_tooltips();
-      window.addEventListener("resize", position_all_tooltips);
-    }
-
-    function create_tooltip(term_elem, term, defn) {
-      const tooltip_id = `tooltip-${term.replace(" ", "-")}`;
-
-      let outer = document.createElement("span");
-      outer.setAttribute("class", "definition-outer");
-      outer.setAttribute("role", "tooltip");
-      outer.setAttribute("id", tooltip_id);
-
-      let inner = document.createElement("span");
-      inner.setAttribute("class", "definition-inner text-sm");
-      inner.setAttribute("id", tooltip_id);
-      inner.innerHTML = defn;
-
-      outer.appendChild(inner);
-      term_elem.appendChild(outer);
-
-      term_elem.setAttribute("aria-describedby", tooltip_id);
-      term_elem.addEventListener("mouseover", (ev) => position_tooltip(ev.target));
-    }
-
-    function position_all_tooltips() {
-
-      let terms = document.getElementsByClassName("term");
-      for (t of terms) {
-        position_tooltip(t);
-      }
-    }
-
-    function position_tooltip(term_elem) {
-      let tooltip = term_elem.firstElementChild;
-      if (tooltip) {
-        
-        const obj_rect = term_elem.getBoundingClientRect();
-        const tooltip_rect = tooltip.getBoundingClientRect();
-
-        let goalX = obj_rect.left + obj_rect.width/2 - tooltip_rect.width/2;
-        let goalY = obj_rect.top - tooltip_rect.height;
-        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-
-        goalX = Math.min(vw - tooltip_rect.width, Math.max(goalX, 0));
-        if (goalY < 0)
-          goalY = obj_rect.bottom;
-
-        tooltip.style.top = (goalY + window.pageYOffset) + "px";
-        tooltip.style.left = (goalX + window.pageXOffset) + "px";
-      }
-    }
-  </script>
-
   <title>
     IC 5067, The Pelican Nebula - Nights of Wren
   </title>
   <meta name="description" content="An emission nebula in the constellation Cygnus" /><meta name="generator" content="Hugo 0.110.0"><link
     rel="stylesheet"
-    href="https://astro.wren.dev/css/styles.min.6e39838a6d763a41c815ca94922b2a2d0e6bd101a5ea83ba4503fc109f477f04.css"
-    integrity="sha256-bjmDim12OkHIFcqUkisqLQ5r0QGl6oO6RQP8EJ9HfwQ="
+    href="https://astro.wren.dev/css/styles.min.2da4521b2193c8d7fa4d21649a7d764304d9daf5303dc6df190c4608152b9d32.css"
+    integrity="sha256-LaRSGyGTyNf6TSFkmn12QwTZ2vUwPcbfGQxGCBUrnTI="
   />
   
   
@@ -92,7 +20,7 @@
 <meta property="og:description" content="An emission nebula in the constellation Cygnus" />
 <meta property="og:type" content="object" />
 <meta property="og:url" content="https://astro.wren.dev/gallery/2022-05-10-ic5067-pelican-neb/" />
-<meta property="og:image" content="https://astro.wren.dev/img/2022-05-10%20ic5067%20pelican%20neb_hu4c6778a3677bd1e4e08ceda0662c32fa_7973459_1200x628_fill_q90_lanczos_center.jpg" />
+<meta property="og:image" content="https://astro.wren.dev/img/2022-05-10%20ic5067%20pelican%20neb_hu916755f9608b09becedd910584ff9e55_18784335_1200x628_fill_q90_lanczos_center.jpg" />
 <meta property="article:section" content="gallery" />
 <meta property="article:published_time" content="2022-05-10T00:00:00+00:00" />
 <meta property="article:modified_time" content="2022-05-10T00:00:00+00:00" />
@@ -100,13 +28,18 @@
 
 
   <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://astro.wren.dev/img/2022-05-10%20ic5067%20pelican%20neb_hu4c6778a3677bd1e4e08ceda0662c32fa_7973459_1200x628_fill_q90_lanczos_center.jpg" />
+<meta name="twitter:image" content="https://astro.wren.dev/img/2022-05-10%20ic5067%20pelican%20neb_hu916755f9608b09becedd910584ff9e55_18784335_1200x628_fill_q90_lanczos_center.jpg" />
 
   <meta itemprop="name" content="IC 5067, The Pelican Nebula">
 <meta itemprop="description" content="An emission nebula in the constellation Cygnus"><meta itemprop="datePublished" content="2022-05-10T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-05-10T00:00:00+00:00" />
 <meta itemprop="wordCount" content="81">
-<meta itemprop="keywords" content="deep-sky,nebula,emission-nebula," />
+<meta itemprop="keywords" content="deep-sky,nebula,emission-nebula,diffuse-nebula," />
+
+  <script>
+    
+    let FF_FOUC_FIX;
+  </script>
 </head>
 
   <body class="dark:bg-gray-800 dark:text-white relative flex flex-col min-h-screen"><header class="container flex justify-between md:justify-between gap-4 flex-wrap p-6 mx-auto relative">
@@ -182,10 +115,10 @@
         
         <div class="relative">
           <img
-            srcset=", /img/2022-05-10%20ic5067%20pelican%20neb_hu4c6778a3677bd1e4e08ceda0662c32fa_7973459_512x0_resize_q90_lanczos.jpg 512w, /img/2022-05-10%20ic5067%20pelican%20neb_hu4c6778a3677bd1e4e08ceda0662c32fa_7973459_768x0_resize_q90_lanczos.jpg 768w, /img/2022-05-10%20ic5067%20pelican%20neb_hu4c6778a3677bd1e4e08ceda0662c32fa_7973459_1024x0_resize_q90_lanczos.jpg 1024w"
-            src="/img/2022-05-10%20ic5067%20pelican%20neb_hu4c6778a3677bd1e4e08ceda0662c32fa_7973459_1024x0_resize_q90_lanczos.jpg"
+            srcset=", /img/2022-05-10%20ic5067%20pelican%20neb_hu916755f9608b09becedd910584ff9e55_18784335_512x0_resize_q90_lanczos.jpg 512w, /img/2022-05-10%20ic5067%20pelican%20neb_hu916755f9608b09becedd910584ff9e55_18784335_768x0_resize_q90_lanczos.jpg 768w, /img/2022-05-10%20ic5067%20pelican%20neb_hu916755f9608b09becedd910584ff9e55_18784335_1024x0_resize_q90_lanczos.jpg 1024w"
+            src="/img/2022-05-10%20ic5067%20pelican%20neb_hu916755f9608b09becedd910584ff9e55_18784335_1024x0_resize_q90_lanczos.jpg"
             sizes="100vw"
-            alt=""
+            alt="IC 5067, The Pelican Nebula"
             class="rounded-lg shadow-sm w-full object-contain"
             id="featured_image" />
           <div class="absolute text-xl prose-dark" id="clickme">
@@ -202,13 +135,16 @@
             </svg>
             Click for full-resolution image
           </div>
-          <div class="absolute top-4 right-4 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5">
+          <div id="datestr" class="absolute top-4 right-4 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5">
             📷 
   
     May 10, 2022
   
 
 
+          </div>
+          <div class="absolute" id="annotations-div"><canvas id="annotations" role="presentation" data-json="/annotations/2022-05-10 ic5067 pelican neb.json" data-width = "4096" data-height="2733"></canvas>
+            <div id="annotations-tooltip" class="absolute bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5 rounded-md"></div>
           </div>
         </div>
       </a>
@@ -232,11 +168,11 @@
             <rect width="0.8" height="0.6" x="0.1" y="0.1" />
             <path d="M 0.26269502,0.43068053 V 0.26068053 H 0.47269502 M 0.73730499,0.37839418 V 0.54839418 H 0.52730499" />
           </svg>
-          Frame: 117.56&#39;x78.34&#39; (1.72&#34;/px)
+          Frame: 117.56&#39;x78.34&#39; (1.17&#34;/px)
         </div>
       
         <div class="text-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="inline-block icon icon-tabler icon-tabler-rotate-clockwise-2" width="16" height="16" viewBox="0 1 24 25" stroke-width="2.4" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" class="inline-block icon icon-tabler icon-tabler-rotate-clockwise-2" width="16" height="16" viewBox="-1 1 23 25" stroke-width="2.4" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <path d="M9 4.55a8 8 0 0 1 6 14.9m0 -4.45v5h5"></path>
             <line x1="5.63" y1="7.16" x2="5.63" y2="7.17"></line>
@@ -246,6 +182,13 @@
             <line x1="11" y1="19.94" x2="11" y2="19.95"></line>
          </svg>
          Rotation: 39.62° E of N
+        </div>
+        <div class="text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="inline-block icon icon-tabler icon-tabler-moon" width="16" height="16" viewBox="-1 1 23 25" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
+         </svg>
+         Moon: 61%
         </div>
     </h5>
 
@@ -378,8 +321,8 @@
 </div>
 <script>
     
-    let img = document.getElementById("featured_image");
-    let clickme = document.getElementById("clickme");
+    const img = document.getElementById("featured_image");
+    const clickme = document.getElementById("clickme");
     if (img && clickme) {
       
       
@@ -389,6 +332,139 @@
       if (img.complete) {
         clickme.style.animationPlayState = "running";
       }
+    }
+
+    const tooltip = document.getElementById("annotations-tooltip");
+    const canvas = document.getElementById("annotations");
+    const json_url = canvas.getAttribute("data-json");
+    const orig_width = canvas.getAttribute("data-width");
+    const orig_height = canvas.getAttribute("data-height");
+    let scale = canvas.parentElement.offsetWidth / orig_width;
+
+    if (json_url && canvas.getContext) {
+      const ctx = canvas.getContext("2d");
+      fetch(json_url)
+        .then(response => response.json())
+        .then(json => {
+          function draw(ev) {
+            
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = canvas.parentElement.offsetHeight;
+            scale = canvas.width / orig_width;
+
+            let highlight_index = -1;
+            let smallest_annotation_radius = 999999999999;
+            let smallest_distance_squared = 999999999999;
+
+            if (ev) {
+              for (const [i, a] of json["annotations"].entries()) {
+                if (a["type"] == "star") {
+                  
+                  distance_squared = Math.pow(a["pixelx"] * scale - ev.layerX, 2) + Math.pow(a["pixely"] * scale - ev.layerY, 2);
+                  const scaled_radius = 9;
+                  if (distance_squared <= scaled_radius * scaled_radius && scaled_radius <= smallest_annotation_radius && distance_squared < smallest_distance_squared) {
+                    smallest_distance_squared = distance_squared;
+                    smallest_annotation_radius = scaled_radius;
+                    highlight_index = i;
+                  }
+                } else if (a["type"] == "ngc") {
+                  
+                  distance_squared = Math.pow(a["pixelx"] * scale - ev.layerX, 2) + Math.pow(a["pixely"] * scale - ev.layerY, 2);
+                  const scaled_radius = a["radius"] * scale;
+                  if (distance_squared < scaled_radius * scaled_radius && scaled_radius < smallest_annotation_radius) {
+                    smallest_distance_squared = distance_squared;
+                    smallest_annotation_radius = scaled_radius;
+                    highlight_index = i;
+                  } else if (distance_squared == scaled_radius * scaled_radius  && scaled_radius == smallest_annotation_radius && distance_squared < smallest_distance_squared) {
+                    smallest_distance_squared = distance_squared;
+                    smallest_annotation_radius = scaled_radius;
+                    highlight_index = i;
+                  }
+                }
+              }
+            }
+
+            let highlight = null;
+            for (const [i, a] of json["annotations"].entries()) {
+              if (i == highlight_index) {
+                highlight = a;
+                continue;
+              }
+              if (a["type"] == "star") {
+                
+                const scaled_x = a["pixelx"] * scale;
+                const scaled_y = a["pixely"] * scale;
+                const scaled_offset = 20;
+                const scaled_offset2 = 7.5;
+
+                ctx.beginPath();
+                ctx.moveTo(scaled_x - scaled_offset, scaled_y);
+                ctx.lineTo(scaled_x - scaled_offset2, scaled_y);
+                ctx.moveTo(scaled_x + scaled_offset, scaled_y);
+                ctx.lineTo(scaled_x + scaled_offset2, scaled_y);
+                ctx.moveTo(scaled_x, scaled_y - scaled_offset);
+                ctx.lineTo(scaled_x, scaled_y - scaled_offset2);
+                ctx.moveTo(scaled_x, scaled_y + scaled_offset);
+                ctx.lineTo(scaled_x, scaled_y + scaled_offset2);
+                ctx.strokeStyle = "rgb(50, 255, 50, 1)"
+                ctx.lineWidth = 1.25;
+                ctx.stroke();
+              } else if (a["type"] == "ngc") {
+                
+                ctx.beginPath();
+                ctx.arc(a["pixelx"] * scale, a["pixely"] * scale, a["radius"] * scale, 0, 2*Math.PI);
+                ctx.strokeStyle = "rgb(150, 150, 150, 1)"
+                ctx.lineWidth = 0.5;
+                ctx.stroke();
+              }
+            }
+
+            if (highlight) {
+              const scaled_x = highlight["pixelx"] * scale;
+              const scaled_y = highlight["pixely"] * scale;
+              if (highlight["type"] == "star") {
+                
+                const scaled_offset = 25;
+                const scaled_offset2 = 7.5;
+
+                ctx.beginPath();
+                ctx.moveTo(scaled_x - scaled_offset, scaled_y);
+                ctx.lineTo(scaled_x - scaled_offset2, scaled_y);
+                ctx.moveTo(scaled_x + scaled_offset, scaled_y);
+                ctx.lineTo(scaled_x + scaled_offset2, scaled_y);
+                ctx.moveTo(scaled_x, scaled_y - scaled_offset);
+                ctx.lineTo(scaled_x, scaled_y - scaled_offset2);
+                ctx.moveTo(scaled_x, scaled_y + scaled_offset);
+                ctx.lineTo(scaled_x, scaled_y + scaled_offset2);
+                ctx.strokeStyle = "rgb(30, 255, 30, 1)"
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                tooltip.style.top = scaled_y + "px";
+              } else if (highlight["type"] == "ngc") {
+                
+                const scaled_radius = highlight["radius"] * scale
+                ctx.beginPath();
+                ctx.arc(scaled_x, scaled_y, scaled_radius, 0, 2*Math.PI);
+                ctx.strokeStyle = "rgb(200, 200, 200, 1)"
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                
+                tooltip.style.top = Math.min(scaled_y + scaled_radius / 3, canvas.height) + "px";
+              }
+
+              tooltip.innerText = highlight["names"].join(" / ");
+              tooltip.style.left = scaled_x + "px"
+              tooltip.style.visibility = "visible";
+            } else {
+              tooltip.style.visibility = "hidden";
+            }
+          }
+          draw(null);
+          canvas.onmousemove = draw;
+          canvas.onmouseleave = ev => draw(null);
+        })
     }
   </script>
 
@@ -483,6 +559,79 @@
   if(mobileMenu && mobileMenuButton) {
     mobileMenuButton.addEventListener('click', toggleMenu);
     mobileMenu.addEventListener('click', toggleMenu);
+  }
+</script>
+
+<script>
+  fetch("/definitions.json")
+    .then(response => {
+      return response.json();
+    })
+    .then(definitions => {
+      if (document.readySate == "loading") {
+        
+        document.addEventListener("DOMContentLoaded", () => create_all_tooltips(definitions));
+      } else {
+        create_all_tooltips(definitions);
+      }
+    });
+
+  function create_all_tooltips(definitions) {
+    let terms = document.getElementsByClassName("term");
+    for (t of terms) {
+      const term = t.getAttribute("data-term");
+      create_tooltip(t, term, definitions[term]);
+    }
+    position_all_tooltips();
+    window.addEventListener("resize", position_all_tooltips);
+  }
+
+  function create_tooltip(term_elem, term, defn) {
+    const tooltip_id = `tooltip-${term.replace(" ", "-")}`;
+
+    let outer = document.createElement("span");
+    outer.setAttribute("class", "definition-outer");
+    outer.setAttribute("role", "tooltip");
+    outer.setAttribute("id", tooltip_id);
+
+    let inner = document.createElement("span");
+    inner.setAttribute("class", "definition-inner text-sm");
+    inner.setAttribute("id", tooltip_id);
+    inner.innerHTML = defn;
+
+    outer.appendChild(inner);
+    term_elem.appendChild(outer);
+
+    term_elem.setAttribute("aria-describedby", tooltip_id);
+    term_elem.addEventListener("mouseover", (ev) => position_tooltip(ev.target));
+  }
+
+  function position_all_tooltips() {
+
+    let terms = document.getElementsByClassName("term");
+    for (t of terms) {
+      position_tooltip(t);
+    }
+  }
+
+  function position_tooltip(term_elem) {
+    let tooltip = term_elem.firstElementChild;
+    if (tooltip) {
+      
+      const obj_rect = term_elem.getBoundingClientRect();
+      const tooltip_rect = tooltip.getBoundingClientRect();
+
+      let goalX = obj_rect.left + obj_rect.width/2 - tooltip_rect.width/2;
+      let goalY = obj_rect.top - tooltip_rect.height;
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+
+      goalX = Math.min(vw - tooltip_rect.width, Math.max(goalX, 0));
+      if (goalY < 0)
+        goalY = obj_rect.bottom;
+
+      tooltip.style.top = (goalY + window.pageYOffset) + "px";
+      tooltip.style.left = (goalX + window.pageXOffset) + "px";
+    }
   }
 </script>
 </body>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>reflection-nebula on Nights of Wren</title>
+    <link>https://astro.wren.dev/tags/reflection-nebula/</link>
+    <description>Recent content in reflection-nebula on Nights of Wren</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 24 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://astro.wren.dev/tags/reflection-nebula/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>M 42, The Orion Nebula</title>
+      <link>https://astro.wren.dev/gallery/2022-03-24-m42-orion-neb/</link>
+      <pubDate>Thu, 24 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://astro.wren.dev/gallery/2022-03-24-m42-orion-neb/</guid>
+      <description>If you were to ask someone on the street what they know about the constellation Orion, they&amp;rsquo;d probably just mention the belt and keep walking. But if that someone happened to be an astronomer, they might be more inclined to start by talking about the Orion complex. The Orion complex is a vast network of interstellar gas and dust spanning the entire constellation, and home to the closest stellar nurseries to Earth.</description>
+    </item>
+    
+  </channel>
+</rss>

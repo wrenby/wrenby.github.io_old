@@ -5,6 +5,8 @@
     "arc-minute": "1/60 of a degree, or 1/21600 of a full circle",
     "j2000": "A method of standardizing the coordinates of moving objects by using their location on Jan 1, 2000",
 
+    "binary star": "A gravitationally-bound system of two stars in orbit around one another, usually orbiting close enough so as to appear as a single star without proper equipment",
+    "asterism": "A well-known pattern of stars that isn't an official constellation (but may be part of one), such as the big & little dippers and the teapot in Sagittarius",
     "deep sky": "Basically any celestial object outside of our solar system",
     "cepheid variable": "A class of stars discovered by Henrietta Swan Leavitt in 1908 which pulse at a frequency proportional to their absolute brightness, used to measure large distances by comparing their pulsation frequency to their observed brightness",
     "emission nebula": "A cloud of gas emitting light of certain wavelength due to quantum behavior. Normally hydrogen, ionized by a nearby star that formed from the same gas",

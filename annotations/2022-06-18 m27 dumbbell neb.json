@@ -1,0 +1,9 @@
+{
+  "status": "solved",
+  "git-revision": 0.93,
+  "git-date": "Mon_Dec_19_16:41:15_2022_-0500",
+  "annotations": [
+{ "type"  : "star",   "pixelx": 1753.29,         "pixely": 2531.28,         "name"  : "14 Vul",     "names" : [ "14 Vul" ] } ,
+{ "type"   : "ngc",   "names"  : [ "NGC 6853", "Dumbbell Nebula", "M 27" ],   "pixelx" : 2049.5,   "pixely" : 1366.12,   "radius" : 200.805 }
+]
+}
