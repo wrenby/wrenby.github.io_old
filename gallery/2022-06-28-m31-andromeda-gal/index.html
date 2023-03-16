@@ -10,8 +10,8 @@
   </title>
   <meta name="description" content="And its satellite galaxies M 32 and M 110" /><meta name="generator" content="Hugo 0.110.0"><link
     rel="stylesheet"
-    href="https://astro.wren.dev/css/styles.min.c85b5c167afec3da3a8531edff71e1ea29d2c3903b07bc5ee7818da513be3d81.css"
-    integrity="sha256-yFtcFnr+w9o6hTHt/3Hh6inSw5A7B7xe54GNpRO+PYE="
+    href="https://astro.wren.dev/css/styles.min.7de2fba5fa3325cff01ee7653e87f039ad32283adb25716b05e4b5319c99c5c0.css"
+    integrity="sha256-feL7pfozJc/wHudlPofwOa0yKDrbJXFrBeS1MZyZxcA="
   />
   
   
@@ -33,7 +33,7 @@
   <meta itemprop="name" content="M 31, The Andromeda Galaxy">
 <meta itemprop="description" content="And its satellite galaxies M 32 and M 110"><meta itemprop="datePublished" content="2022-06-28T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-06-28T00:00:00+00:00" />
-<meta itemprop="wordCount" content="170">
+<meta itemprop="wordCount" content="169">
 <meta itemprop="keywords" content="deep-sky,galaxy,messier-object," />
 
   <script>
@@ -135,6 +135,9 @@
             </svg>
             Click for full-resolution image
           </div>
+          <div class="absolute" id="annotations-div"><canvas id="annotations" role="presentation" data-json="/annotations/2022-06-28 m31 andromeda gal.json" data-width = "4096" data-height="2733"></canvas>
+            <div id="annotations-tooltip" class="absolute bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5 rounded-md"></div>
+          </div>
           <div id="datestr" class="absolute top-4 right-4 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5">
             📷 
   
@@ -142,9 +145,6 @@
   
 
 
-          </div>
-          <div class="absolute" id="annotations-div"><canvas id="annotations" role="presentation" data-json="/annotations/2022-06-28 m31 andromeda gal.json" data-width = "4096" data-height="2733"></canvas>
-            <div id="annotations-tooltip" class="absolute bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5 rounded-md"></div>
           </div>
         </div>
       </a>
@@ -192,14 +192,8 @@
         </div>
     </h5>
 
-    <p>Approximately 245 million lightyears in the direction of the constellation Andromeda, The Andromeda Galaxy (also known as <span class="term" data-term=m>M</span>
- 31 and <span class="term" data-term=ngc>NGC</span>
- 224, formerly the Great Spiral Nebula in Andromeda) is our closest neighboring galaxy of similar size, and is projected to merge with the Milky Way in 4-5 billion years. The Andromeda Galaxy played an important role in <a href="https://apod.nasa.gov/diamond_jubilee/debate20.html">The Great Debate</a> concerning the size of the universe and the nature of spiral galaxies &ndash; then called spiral nebulae or island universes, depending on your side of the argument. The debate was settled in 1925 after Edwin Hubble measured the distance to Andromeda using 
-  <span class="term" data-term=cepheid&#32;variable>Cepheid variable stars</span>
-
-, and determined it was far outside the range of the Milky Way.</p>
-<p>Captured over two nights using a Fujifilm X-A5 and a GSO 6&quot; F/4 Newtonian mounted on a Celestron AVX, and processed with Siril and GIMP. This image is a <span class="term" data-term=stack>stack</span>
- of 5.5 hours total integration time distributed over 221 exposures at 1000 ISO, and calibrated using 40 biases, flats, and darks.</p>
+    <p>Approximately 245 million lightyears in the direction of the constellation Andromeda, The Andromeda Galaxy (also known as <span class="term" data-term=m>M</span> 31 and <span class="term" data-term=ngc>NGC</span> 224, formerly the Great Spiral Nebula in Andromeda) is our closest neighboring galaxy of similar size, and is projected to merge with the Milky Way in 4-5 billion years. The Andromeda Galaxy played an important role in <a href="https://apod.nasa.gov/diamond_jubilee/debate20.html">The Great Debate</a> concerning the size of the universe and the nature of spiral galaxies &ndash; then called spiral nebulae or island universes, depending on your side of the argument. The debate was settled in 1925 after Edwin Hubble measured the distance to Andromeda using <span class="term" data-term=cepheid&#32;variable>Cepheid variable stars</span>, and determined it was far outside the range of the Milky Way.</p>
+<p>Captured over two nights using a Fujifilm X-A5 and a GSO 6&quot; F/4 Newtonian mounted on a Celestron AVX, and processed with Siril and GIMP. This image is a <span class="term" data-term=stack>stack</span> of 5.5 hours total integration time distributed over 221 exposures at 1000 ISO, and calibrated using 40 biases, flats, and darks.</p>
 
   </article><div class="bg-blue-100 dark:bg-gray-900">
   <div class="container px-6 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -340,7 +334,8 @@
     const json_url = canvas.getAttribute("data-json");
     const orig_width = canvas.getAttribute("data-width");
     const orig_height = canvas.getAttribute("data-height");
-    let scale = (canvas.parentElement.offsetWidth * window.devicePixelRatio) / orig_width;
+    let css_scale = canvas.parentElement.offsetWidth / orig_width;
+    let canvas_scale = css_scale * window.devicePixelRatio;
 
     if (json_url && canvas.getContext) {
       const ctx = canvas.getContext("2d");
@@ -351,7 +346,8 @@
             
             canvas.width = canvas.parentElement.offsetWidth * window.devicePixelRatio;
             canvas.height = canvas.parentElement.offsetHeight * window.devicePixelRatio;
-            scale = canvas.width / orig_width;
+            canvas_scale = canvas.width / orig_width;
+            css_scale = canvas_scale / window.devicePixelRatio;
 
             let highlight_index = -1;
             let smallest_annotation_radius = 999999999999;
@@ -361,7 +357,7 @@
               for (const [i, a] of json["annotations"].entries()) {
                 if (a["type"] == "star") {
                   
-                  distance_squared = Math.pow(a["pixelx"] * scale - ev.layerX, 2) + Math.pow(a["pixely"] * scale - ev.layerY, 2);
+                  distance_squared = Math.pow(a["pixelx"] * css_scale - ev.layerX, 2) + Math.pow(a["pixely"] * css_scale - ev.layerY, 2);
                   const scaled_radius = 9;
                   if (distance_squared <= scaled_radius * scaled_radius && scaled_radius <= smallest_annotation_radius && distance_squared < smallest_distance_squared) {
                     smallest_distance_squared = distance_squared;
@@ -370,8 +366,8 @@
                   }
                 } else if (a["type"] == "ngc") {
                   
-                  distance_squared = Math.pow(a["pixelx"] * scale - ev.layerX, 2) + Math.pow(a["pixely"] * scale - ev.layerY, 2);
-                  const scaled_radius = a["radius"] * scale;
+                  distance_squared = Math.pow(a["pixelx"] * css_scale - ev.layerX, 2) + Math.pow(a["pixely"] * css_scale - ev.layerY, 2);
+                  const scaled_radius = a["radius"] * css_scale;
                   if (distance_squared < scaled_radius * scaled_radius && scaled_radius < smallest_annotation_radius) {
                     smallest_distance_squared = distance_squared;
                     smallest_annotation_radius = scaled_radius;
@@ -393,10 +389,10 @@
               }
               if (a["type"] == "star") {
                 
-                const scaled_x = a["pixelx"] * scale;
-                const scaled_y = a["pixely"] * scale;
-                const scaled_offset = 20;
-                const scaled_offset2 = 7.5;
+                const scaled_x = a["pixelx"] * canvas_scale;
+                const scaled_y = a["pixely"] * canvas_scale;
+                const scaled_offset = 20 * window.devicePixelRatio;
+                const scaled_offset2 = 7.5 * window.devicePixelRatio;
 
                 ctx.beginPath();
                 ctx.moveTo(scaled_x - scaled_offset, scaled_y);
@@ -408,25 +404,25 @@
                 ctx.moveTo(scaled_x, scaled_y + scaled_offset);
                 ctx.lineTo(scaled_x, scaled_y + scaled_offset2);
                 ctx.strokeStyle = "rgb(50, 255, 50, 1)"
-                ctx.lineWidth = 1.25;
+                ctx.lineWidth = 1.25 * window.devicePixelRatio;
                 ctx.stroke();
               } else if (a["type"] == "ngc") {
                 
                 ctx.beginPath();
-                ctx.arc(a["pixelx"] * scale, a["pixely"] * scale, a["radius"] * scale, 0, 2*Math.PI);
+                ctx.arc(a["pixelx"] * canvas_scale, a["pixely"] * canvas_scale, a["radius"] * canvas_scale, 0, 2*Math.PI);
                 ctx.strokeStyle = "rgb(150, 150, 150, 1)"
-                ctx.lineWidth = 0.5;
+                ctx.lineWidth = 0.5 * window.devicePixelRatio;
                 ctx.stroke();
               }
             }
 
             if (highlight) {
-              const scaled_x = highlight["pixelx"] * scale;
-              const scaled_y = highlight["pixely"] * scale;
+              const scaled_x = highlight["pixelx"] * canvas_scale;
+              const scaled_y = highlight["pixely"] * canvas_scale;
               if (highlight["type"] == "star") {
                 
-                const scaled_offset = 25;
-                const scaled_offset2 = 7.5;
+                const scaled_offset = 25 * window.devicePixelRatio;
+                const scaled_offset2 = 7.5 * window.devicePixelRatio;
 
                 ctx.beginPath();
                 ctx.moveTo(scaled_x - scaled_offset, scaled_y);
@@ -438,25 +434,27 @@
                 ctx.moveTo(scaled_x, scaled_y + scaled_offset);
                 ctx.lineTo(scaled_x, scaled_y + scaled_offset2);
                 ctx.strokeStyle = "rgb(30, 255, 30, 1)"
-                ctx.lineWidth = 2;
+                ctx.lineWidth = 2 * window.devicePixelRatio;
                 ctx.stroke();
 
-                tooltip.style.top = scaled_y + "px";
+                tooltip.style.top = highlight["pixely"] * css_scale + "px";
               } else if (highlight["type"] == "ngc") {
                 
-                const scaled_radius = highlight["radius"] * scale
+                const scaled_radius = highlight["radius"] * canvas_scale
                 ctx.beginPath();
                 ctx.arc(scaled_x, scaled_y, scaled_radius, 0, 2*Math.PI);
                 ctx.strokeStyle = "rgb(200, 200, 200, 1)"
-                ctx.lineWidth = 1;
+                ctx.lineWidth = 1 * window.devicePixelRatio;
                 ctx.stroke();
 
                 
-                tooltip.style.top = Math.min(scaled_y + scaled_radius / 3, canvas.height) + "px";
+                tooltip.style.top = Math.min(highlight["pixely"] * css_scale + highlight["radius"] * css_scale / 3, canvas.height) + "px";
               }
 
               tooltip.innerText = highlight["names"].join(" / ");
-              tooltip.style.left = scaled_x + "px"
+              let desired_left = scaled_x / window.devicePixelRatio;
+              let actual_left = Math.min(desired_left, canvas.parentElement.offsetWidth - canvas.parentElement.offsetLeft - tooltip.offsetWidth)
+              tooltip.style.left = actual_left + "px"
               tooltip.style.visibility = "visible";
             } else {
               tooltip.style.visibility = "hidden";
@@ -621,17 +619,19 @@
       
       const obj_rect = term_elem.getBoundingClientRect();
       const tooltip_rect = tooltip.getBoundingClientRect();
+      const definition_rect = tooltip.firstElementChild.getBoundingClientRect();
+      console.log(tooltip);
 
-      let goalX = obj_rect.left + obj_rect.width/2 - tooltip_rect.width/2;
-      let goalY = obj_rect.top - tooltip_rect.height;
+      let goalX = obj_rect.left + obj_rect.width/2 - definition_rect.width/2;
+      let goalY = obj_rect.top - definition_rect.height;
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 
-      goalX = Math.min(vw - tooltip_rect.width, Math.max(goalX, 0));
+      goalX = Math.min(vw - definition_rect.width, Math.max(goalX, 0));
       if (goalY < 0)
         goalY = obj_rect.bottom;
 
       tooltip.style.top = (goalY + window.pageYOffset) + "px";
-      tooltip.style.left = (goalX + window.pageXOffset) + "px";
+      tooltip.style.left = (goalX + window.pageXOffset) - (tooltip_rect.width - definition_rect.width) / 2 + "px";
     }
   }
 </script>

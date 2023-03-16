@@ -10,8 +10,8 @@
   </title>
   <meta name="description" content="" /><meta name="generator" content="Hugo 0.110.0"><link
     rel="stylesheet"
-    href="https://astro.wren.dev/css/styles.min.c85b5c167afec3da3a8531edff71e1ea29d2c3903b07bc5ee7818da513be3d81.css"
-    integrity="sha256-yFtcFnr+w9o6hTHt/3Hh6inSw5A7B7xe54GNpRO+PYE="
+    href="https://astro.wren.dev/css/styles.min.7de2fba5fa3325cff01ee7653e87f039ad32283adb25716b05e4b5319c99c5c0.css"
+    integrity="sha256-feL7pfozJc/wHudlPofwOa0yKDrbJXFrBeS1MZyZxcA="
   />
   
   
@@ -412,17 +412,19 @@
       
       const obj_rect = term_elem.getBoundingClientRect();
       const tooltip_rect = tooltip.getBoundingClientRect();
+      const definition_rect = tooltip.firstElementChild.getBoundingClientRect();
+      console.log(tooltip);
 
-      let goalX = obj_rect.left + obj_rect.width/2 - tooltip_rect.width/2;
-      let goalY = obj_rect.top - tooltip_rect.height;
+      let goalX = obj_rect.left + obj_rect.width/2 - definition_rect.width/2;
+      let goalY = obj_rect.top - definition_rect.height;
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 
-      goalX = Math.min(vw - tooltip_rect.width, Math.max(goalX, 0));
+      goalX = Math.min(vw - definition_rect.width, Math.max(goalX, 0));
       if (goalY < 0)
         goalY = obj_rect.bottom;
 
       tooltip.style.top = (goalY + window.pageYOffset) + "px";
-      tooltip.style.left = (goalX + window.pageXOffset) + "px";
+      tooltip.style.left = (goalX + window.pageXOffset) - (tooltip_rect.width - definition_rect.width) / 2 + "px";
     }
   }
 </script>

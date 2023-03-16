@@ -10,8 +10,8 @@
   </title>
   <meta name="description" content="Also known as a blood moon" /><meta name="generator" content="Hugo 0.110.0"><link
     rel="stylesheet"
-    href="https://astro.wren.dev/css/styles.min.c85b5c167afec3da3a8531edff71e1ea29d2c3903b07bc5ee7818da513be3d81.css"
-    integrity="sha256-yFtcFnr+w9o6hTHt/3Hh6inSw5A7B7xe54GNpRO+PYE="
+    href="https://astro.wren.dev/css/styles.min.7de2fba5fa3325cff01ee7653e87f039ad32283adb25716b05e4b5319c99c5c0.css"
+    integrity="sha256-feL7pfozJc/wHudlPofwOa0yKDrbJXFrBeS1MZyZxcA="
   />
   
   
@@ -135,6 +135,9 @@
             </svg>
             Click for full-resolution image
           </div>
+          <div class="absolute" id="annotations-div"><canvas id="annotations" role="presentation" data-json="/annotations/2022-05-15 lunar eclipse.json" data-width = "4096" data-height="2730"></canvas>
+            <div id="annotations-tooltip" class="absolute bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5 rounded-md"></div>
+          </div>
           <div id="datestr" class="absolute top-4 right-4 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5">
             📷 
   
@@ -142,9 +145,6 @@
   
 
 
-          </div>
-          <div class="absolute" id="annotations-div"><canvas id="annotations" role="presentation" data-json="/annotations/2022-05-15 lunar eclipse.json" data-width = "4096" data-height="2730"></canvas>
-            <div id="annotations-tooltip" class="absolute bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5 rounded-md"></div>
           </div>
         </div>
       </a>
@@ -174,10 +174,7 @@
     </h5>
 
     <p>During a lunar eclipse, the moon appears red due to the way the light interacts with Earth&rsquo;s atmosphere. Since the Earth is blocking direct sunlight, the only light it can receive has been refracted through the atmosphere, and the photons most likely to survive the trip are those with longer wavelengths: red light. This phenomenon is called Rayleigh Scattering, and it&rsquo;s also responsible for the color of sunsets and the sky during the day.</p>
-<p>Captured using a Fujifilm X-A5 and a GSO 6&quot; F/4 Newtonian mounted on a Celestron AVX. This image is a composite of two 
-  <span class="term" data-term=stack>stacks</span>
-
- of 15 2-second exposures at 800 ISO, one aligned using stars and the other using the moon. No calibration frames were used.</p>
+<p>Captured using a Fujifilm X-A5 and a GSO 6&quot; F/4 Newtonian mounted on a Celestron AVX. This image is a composite of two <span class="term" data-term=stack>stacks</span> of 15 2-second exposures at 800 ISO, one aligned using stars and the other using the moon. No calibration frames were used.</p>
 
   </article><div class="bg-blue-100 dark:bg-gray-900">
   <div class="container px-6 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -318,7 +315,8 @@
     const json_url = canvas.getAttribute("data-json");
     const orig_width = canvas.getAttribute("data-width");
     const orig_height = canvas.getAttribute("data-height");
-    let scale = (canvas.parentElement.offsetWidth * window.devicePixelRatio) / orig_width;
+    let css_scale = canvas.parentElement.offsetWidth / orig_width;
+    let canvas_scale = css_scale * window.devicePixelRatio;
 
     if (json_url && canvas.getContext) {
       const ctx = canvas.getContext("2d");
@@ -329,7 +327,8 @@
             
             canvas.width = canvas.parentElement.offsetWidth * window.devicePixelRatio;
             canvas.height = canvas.parentElement.offsetHeight * window.devicePixelRatio;
-            scale = canvas.width / orig_width;
+            canvas_scale = canvas.width / orig_width;
+            css_scale = canvas_scale / window.devicePixelRatio;
 
             let highlight_index = -1;
             let smallest_annotation_radius = 999999999999;
@@ -339,7 +338,7 @@
               for (const [i, a] of json["annotations"].entries()) {
                 if (a["type"] == "star") {
                   
-                  distance_squared = Math.pow(a["pixelx"] * scale - ev.layerX, 2) + Math.pow(a["pixely"] * scale - ev.layerY, 2);
+                  distance_squared = Math.pow(a["pixelx"] * css_scale - ev.layerX, 2) + Math.pow(a["pixely"] * css_scale - ev.layerY, 2);
                   const scaled_radius = 9;
                   if (distance_squared <= scaled_radius * scaled_radius && scaled_radius <= smallest_annotation_radius && distance_squared < smallest_distance_squared) {
                     smallest_distance_squared = distance_squared;
@@ -348,8 +347,8 @@
                   }
                 } else if (a["type"] == "ngc") {
                   
-                  distance_squared = Math.pow(a["pixelx"] * scale - ev.layerX, 2) + Math.pow(a["pixely"] * scale - ev.layerY, 2);
-                  const scaled_radius = a["radius"] * scale;
+                  distance_squared = Math.pow(a["pixelx"] * css_scale - ev.layerX, 2) + Math.pow(a["pixely"] * css_scale - ev.layerY, 2);
+                  const scaled_radius = a["radius"] * css_scale;
                   if (distance_squared < scaled_radius * scaled_radius && scaled_radius < smallest_annotation_radius) {
                     smallest_distance_squared = distance_squared;
                     smallest_annotation_radius = scaled_radius;
@@ -371,10 +370,10 @@
               }
               if (a["type"] == "star") {
                 
-                const scaled_x = a["pixelx"] * scale;
-                const scaled_y = a["pixely"] * scale;
-                const scaled_offset = 20;
-                const scaled_offset2 = 7.5;
+                const scaled_x = a["pixelx"] * canvas_scale;
+                const scaled_y = a["pixely"] * canvas_scale;
+                const scaled_offset = 20 * window.devicePixelRatio;
+                const scaled_offset2 = 7.5 * window.devicePixelRatio;
 
                 ctx.beginPath();
                 ctx.moveTo(scaled_x - scaled_offset, scaled_y);
@@ -386,25 +385,25 @@
                 ctx.moveTo(scaled_x, scaled_y + scaled_offset);
                 ctx.lineTo(scaled_x, scaled_y + scaled_offset2);
                 ctx.strokeStyle = "rgb(50, 255, 50, 1)"
-                ctx.lineWidth = 1.25;
+                ctx.lineWidth = 1.25 * window.devicePixelRatio;
                 ctx.stroke();
               } else if (a["type"] == "ngc") {
                 
                 ctx.beginPath();
-                ctx.arc(a["pixelx"] * scale, a["pixely"] * scale, a["radius"] * scale, 0, 2*Math.PI);
+                ctx.arc(a["pixelx"] * canvas_scale, a["pixely"] * canvas_scale, a["radius"] * canvas_scale, 0, 2*Math.PI);
                 ctx.strokeStyle = "rgb(150, 150, 150, 1)"
-                ctx.lineWidth = 0.5;
+                ctx.lineWidth = 0.5 * window.devicePixelRatio;
                 ctx.stroke();
               }
             }
 
             if (highlight) {
-              const scaled_x = highlight["pixelx"] * scale;
-              const scaled_y = highlight["pixely"] * scale;
+              const scaled_x = highlight["pixelx"] * canvas_scale;
+              const scaled_y = highlight["pixely"] * canvas_scale;
               if (highlight["type"] == "star") {
                 
-                const scaled_offset = 25;
-                const scaled_offset2 = 7.5;
+                const scaled_offset = 25 * window.devicePixelRatio;
+                const scaled_offset2 = 7.5 * window.devicePixelRatio;
 
                 ctx.beginPath();
                 ctx.moveTo(scaled_x - scaled_offset, scaled_y);
@@ -416,25 +415,27 @@
                 ctx.moveTo(scaled_x, scaled_y + scaled_offset);
                 ctx.lineTo(scaled_x, scaled_y + scaled_offset2);
                 ctx.strokeStyle = "rgb(30, 255, 30, 1)"
-                ctx.lineWidth = 2;
+                ctx.lineWidth = 2 * window.devicePixelRatio;
                 ctx.stroke();
 
-                tooltip.style.top = scaled_y + "px";
+                tooltip.style.top = highlight["pixely"] * css_scale + "px";
               } else if (highlight["type"] == "ngc") {
                 
-                const scaled_radius = highlight["radius"] * scale
+                const scaled_radius = highlight["radius"] * canvas_scale
                 ctx.beginPath();
                 ctx.arc(scaled_x, scaled_y, scaled_radius, 0, 2*Math.PI);
                 ctx.strokeStyle = "rgb(200, 200, 200, 1)"
-                ctx.lineWidth = 1;
+                ctx.lineWidth = 1 * window.devicePixelRatio;
                 ctx.stroke();
 
                 
-                tooltip.style.top = Math.min(scaled_y + scaled_radius / 3, canvas.height) + "px";
+                tooltip.style.top = Math.min(highlight["pixely"] * css_scale + highlight["radius"] * css_scale / 3, canvas.height) + "px";
               }
 
               tooltip.innerText = highlight["names"].join(" / ");
-              tooltip.style.left = scaled_x + "px"
+              let desired_left = scaled_x / window.devicePixelRatio;
+              let actual_left = Math.min(desired_left, canvas.parentElement.offsetWidth - canvas.parentElement.offsetLeft - tooltip.offsetWidth)
+              tooltip.style.left = actual_left + "px"
               tooltip.style.visibility = "visible";
             } else {
               tooltip.style.visibility = "hidden";
@@ -599,17 +600,19 @@
       
       const obj_rect = term_elem.getBoundingClientRect();
       const tooltip_rect = tooltip.getBoundingClientRect();
+      const definition_rect = tooltip.firstElementChild.getBoundingClientRect();
+      console.log(tooltip);
 
-      let goalX = obj_rect.left + obj_rect.width/2 - tooltip_rect.width/2;
-      let goalY = obj_rect.top - tooltip_rect.height;
+      let goalX = obj_rect.left + obj_rect.width/2 - definition_rect.width/2;
+      let goalY = obj_rect.top - definition_rect.height;
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 
-      goalX = Math.min(vw - tooltip_rect.width, Math.max(goalX, 0));
+      goalX = Math.min(vw - definition_rect.width, Math.max(goalX, 0));
       if (goalY < 0)
         goalY = obj_rect.bottom;
 
       tooltip.style.top = (goalY + window.pageYOffset) + "px";
-      tooltip.style.left = (goalX + window.pageXOffset) + "px";
+      tooltip.style.left = (goalX + window.pageXOffset) - (tooltip_rect.width - definition_rect.width) / 2 + "px";
     }
   }
 </script>

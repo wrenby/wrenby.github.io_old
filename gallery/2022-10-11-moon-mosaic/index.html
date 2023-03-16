@@ -10,8 +10,8 @@
   </title>
   <meta name="description" content="In 6K resolution" /><meta name="generator" content="Hugo 0.110.0"><link
     rel="stylesheet"
-    href="https://astro.wren.dev/css/styles.min.c85b5c167afec3da3a8531edff71e1ea29d2c3903b07bc5ee7818da513be3d81.css"
-    integrity="sha256-yFtcFnr+w9o6hTHt/3Hh6inSw5A7B7xe54GNpRO+PYE="
+    href="https://astro.wren.dev/css/styles.min.7de2fba5fa3325cff01ee7653e87f039ad32283adb25716b05e4b5319c99c5c0.css"
+    integrity="sha256-feL7pfozJc/wHudlPofwOa0yKDrbJXFrBeS1MZyZxcA="
   />
   
   
@@ -135,6 +135,9 @@
             </svg>
             Click for full-resolution image
           </div>
+          <div class="absolute" id="annotations-div"><canvas id="annotations" role="presentation" data-json="/annotations/2022-10-11 moon mosaic.json" data-width = "5960" data-height="5879"></canvas>
+            <div id="annotations-tooltip" class="absolute bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5 rounded-md"></div>
+          </div>
           <div id="datestr" class="absolute top-4 right-4 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5">
             📷 
   
@@ -142,9 +145,6 @@
   
 
 
-          </div>
-          <div class="absolute" id="annotations-div"><canvas id="annotations" role="presentation" data-json="/annotations/2022-10-11 moon mosaic.json" data-width = "5960" data-height="5879"></canvas>
-            <div id="annotations-tooltip" class="absolute bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5 rounded-md"></div>
           </div>
         </div>
       </a>
@@ -160,8 +160,7 @@
     </h5>
 
     <p>Believe it or not, full moons are generally considered bad news for astrophotographers. Faint details in a target can easily be swamped in the strong glow of the moon, especially when considered in tandem with artificial light pollution, and seasoned lunar photographers tend to prefer the high-contrast view of shadows cast by craters. But, to my good luck, I am not a seasoned lunar photographer, and am just as impressed a full moon as the rest of the world. So why not take a break from the dim targets for a night and take a shot at the moon instead?</p>
-<p>This image is a 13-panel mosaic, with each panel made up of around 430 1.3ms frames taken at gain 0. Captured using a ZWO ASI120MM Mini, an Svbony SV137 2x Barlow lens, and a GSO 6&quot; F/4 mounted on a Celestron AVX. Each panel was stacked in Siril. I couldn&rsquo;t find any free tools to stitch together mosaics of non-<span class="term" data-term=deep&#32;sky>deep sky</span>
- targets (Microsoft apparently had a good one according to some forum posts, but it was since discontinued), so I just did it myself in GIMP, which I also used for sharpening, padding out some corners with black, and blending some seams. Also, there&rsquo;s a small patch of the moon that I didn&rsquo;t capture in my mosaic, and I decided to cover up with an MS Paint tier edit because I thought it was funny. It turned out to be pretty convincing if you didn&rsquo;t know where to look! See if you can find it :)</p>
+<p>This image is a 13-panel mosaic, with each panel made up of around 430 1.3ms frames taken at gain 0. Captured using a ZWO ASI120MM Mini, an Svbony SV137 2x Barlow lens, and a GSO 6&quot; F/4 mounted on a Celestron AVX. Each panel was stacked in Siril. I couldn&rsquo;t find any free tools to stitch together mosaics of non-<span class="term" data-term=deep&#32;sky>deep sky</span> targets (Microsoft apparently had a good one according to some forum posts, but it was since discontinued), so I just did it myself in GIMP, which I also used for sharpening, padding out some corners with black, and blending some seams. Also, there&rsquo;s a small patch of the moon that I didn&rsquo;t capture in my mosaic, and I decided to cover up with an MS Paint tier edit because I thought it was funny. It turned out to be pretty convincing if you didn&rsquo;t know where to look! See if you can find it :)</p>
 
   </article><div class="bg-blue-100 dark:bg-gray-900">
   <div class="container px-6 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -302,7 +301,8 @@
     const json_url = canvas.getAttribute("data-json");
     const orig_width = canvas.getAttribute("data-width");
     const orig_height = canvas.getAttribute("data-height");
-    let scale = (canvas.parentElement.offsetWidth * window.devicePixelRatio) / orig_width;
+    let css_scale = canvas.parentElement.offsetWidth / orig_width;
+    let canvas_scale = css_scale * window.devicePixelRatio;
 
     if (json_url && canvas.getContext) {
       const ctx = canvas.getContext("2d");
@@ -313,7 +313,8 @@
             
             canvas.width = canvas.parentElement.offsetWidth * window.devicePixelRatio;
             canvas.height = canvas.parentElement.offsetHeight * window.devicePixelRatio;
-            scale = canvas.width / orig_width;
+            canvas_scale = canvas.width / orig_width;
+            css_scale = canvas_scale / window.devicePixelRatio;
 
             let highlight_index = -1;
             let smallest_annotation_radius = 999999999999;
@@ -323,7 +324,7 @@
               for (const [i, a] of json["annotations"].entries()) {
                 if (a["type"] == "star") {
                   
-                  distance_squared = Math.pow(a["pixelx"] * scale - ev.layerX, 2) + Math.pow(a["pixely"] * scale - ev.layerY, 2);
+                  distance_squared = Math.pow(a["pixelx"] * css_scale - ev.layerX, 2) + Math.pow(a["pixely"] * css_scale - ev.layerY, 2);
                   const scaled_radius = 9;
                   if (distance_squared <= scaled_radius * scaled_radius && scaled_radius <= smallest_annotation_radius && distance_squared < smallest_distance_squared) {
                     smallest_distance_squared = distance_squared;
@@ -332,8 +333,8 @@
                   }
                 } else if (a["type"] == "ngc") {
                   
-                  distance_squared = Math.pow(a["pixelx"] * scale - ev.layerX, 2) + Math.pow(a["pixely"] * scale - ev.layerY, 2);
-                  const scaled_radius = a["radius"] * scale;
+                  distance_squared = Math.pow(a["pixelx"] * css_scale - ev.layerX, 2) + Math.pow(a["pixely"] * css_scale - ev.layerY, 2);
+                  const scaled_radius = a["radius"] * css_scale;
                   if (distance_squared < scaled_radius * scaled_radius && scaled_radius < smallest_annotation_radius) {
                     smallest_distance_squared = distance_squared;
                     smallest_annotation_radius = scaled_radius;
@@ -355,10 +356,10 @@
               }
               if (a["type"] == "star") {
                 
-                const scaled_x = a["pixelx"] * scale;
-                const scaled_y = a["pixely"] * scale;
-                const scaled_offset = 20;
-                const scaled_offset2 = 7.5;
+                const scaled_x = a["pixelx"] * canvas_scale;
+                const scaled_y = a["pixely"] * canvas_scale;
+                const scaled_offset = 20 * window.devicePixelRatio;
+                const scaled_offset2 = 7.5 * window.devicePixelRatio;
 
                 ctx.beginPath();
                 ctx.moveTo(scaled_x - scaled_offset, scaled_y);
@@ -370,25 +371,25 @@
                 ctx.moveTo(scaled_x, scaled_y + scaled_offset);
                 ctx.lineTo(scaled_x, scaled_y + scaled_offset2);
                 ctx.strokeStyle = "rgb(50, 255, 50, 1)"
-                ctx.lineWidth = 1.25;
+                ctx.lineWidth = 1.25 * window.devicePixelRatio;
                 ctx.stroke();
               } else if (a["type"] == "ngc") {
                 
                 ctx.beginPath();
-                ctx.arc(a["pixelx"] * scale, a["pixely"] * scale, a["radius"] * scale, 0, 2*Math.PI);
+                ctx.arc(a["pixelx"] * canvas_scale, a["pixely"] * canvas_scale, a["radius"] * canvas_scale, 0, 2*Math.PI);
                 ctx.strokeStyle = "rgb(150, 150, 150, 1)"
-                ctx.lineWidth = 0.5;
+                ctx.lineWidth = 0.5 * window.devicePixelRatio;
                 ctx.stroke();
               }
             }
 
             if (highlight) {
-              const scaled_x = highlight["pixelx"] * scale;
-              const scaled_y = highlight["pixely"] * scale;
+              const scaled_x = highlight["pixelx"] * canvas_scale;
+              const scaled_y = highlight["pixely"] * canvas_scale;
               if (highlight["type"] == "star") {
                 
-                const scaled_offset = 25;
-                const scaled_offset2 = 7.5;
+                const scaled_offset = 25 * window.devicePixelRatio;
+                const scaled_offset2 = 7.5 * window.devicePixelRatio;
 
                 ctx.beginPath();
                 ctx.moveTo(scaled_x - scaled_offset, scaled_y);
@@ -400,25 +401,27 @@
                 ctx.moveTo(scaled_x, scaled_y + scaled_offset);
                 ctx.lineTo(scaled_x, scaled_y + scaled_offset2);
                 ctx.strokeStyle = "rgb(30, 255, 30, 1)"
-                ctx.lineWidth = 2;
+                ctx.lineWidth = 2 * window.devicePixelRatio;
                 ctx.stroke();
 
-                tooltip.style.top = scaled_y + "px";
+                tooltip.style.top = highlight["pixely"] * css_scale + "px";
               } else if (highlight["type"] == "ngc") {
                 
-                const scaled_radius = highlight["radius"] * scale
+                const scaled_radius = highlight["radius"] * canvas_scale
                 ctx.beginPath();
                 ctx.arc(scaled_x, scaled_y, scaled_radius, 0, 2*Math.PI);
                 ctx.strokeStyle = "rgb(200, 200, 200, 1)"
-                ctx.lineWidth = 1;
+                ctx.lineWidth = 1 * window.devicePixelRatio;
                 ctx.stroke();
 
                 
-                tooltip.style.top = Math.min(scaled_y + scaled_radius / 3, canvas.height) + "px";
+                tooltip.style.top = Math.min(highlight["pixely"] * css_scale + highlight["radius"] * css_scale / 3, canvas.height) + "px";
               }
 
               tooltip.innerText = highlight["names"].join(" / ");
-              tooltip.style.left = scaled_x + "px"
+              let desired_left = scaled_x / window.devicePixelRatio;
+              let actual_left = Math.min(desired_left, canvas.parentElement.offsetWidth - canvas.parentElement.offsetLeft - tooltip.offsetWidth)
+              tooltip.style.left = actual_left + "px"
               tooltip.style.visibility = "visible";
             } else {
               tooltip.style.visibility = "hidden";
@@ -583,17 +586,19 @@
       
       const obj_rect = term_elem.getBoundingClientRect();
       const tooltip_rect = tooltip.getBoundingClientRect();
+      const definition_rect = tooltip.firstElementChild.getBoundingClientRect();
+      console.log(tooltip);
 
-      let goalX = obj_rect.left + obj_rect.width/2 - tooltip_rect.width/2;
-      let goalY = obj_rect.top - tooltip_rect.height;
+      let goalX = obj_rect.left + obj_rect.width/2 - definition_rect.width/2;
+      let goalY = obj_rect.top - definition_rect.height;
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 
-      goalX = Math.min(vw - tooltip_rect.width, Math.max(goalX, 0));
+      goalX = Math.min(vw - definition_rect.width, Math.max(goalX, 0));
       if (goalY < 0)
         goalY = obj_rect.bottom;
 
       tooltip.style.top = (goalY + window.pageYOffset) + "px";
-      tooltip.style.left = (goalX + window.pageXOffset) + "px";
+      tooltip.style.left = (goalX + window.pageXOffset) - (tooltip_rect.width - definition_rect.width) / 2 + "px";
     }
   }
 </script>
