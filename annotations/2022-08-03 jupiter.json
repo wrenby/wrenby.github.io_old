@@ -3,6 +3,6 @@
   { "type"  : "star",   "pixelx": 88.7,         "pixely": 59.5,         "name"  : "Io",     "names" : [ "Io" ] } ,
   { "type"  : "star",   "pixelx": 356.9,         "pixely": 323,         "name"  : "Callisto",     "names" : [ "Callisto" ] } ,
   { "type"   : "star",   "names"  : [ "Great Red Spot" ],  "pixelx": 211.5,         "pixely": 191.5},
-  { "type"   : "ngc",   "names"  : [ "Jupiter" ],  "pixelx": 190,         "pixely": 191,     "radius": 50 }
+  { "type"   : "ngc",   "names"  : [ "Jupiter" ],  "pixelx": 190,         "pixely": 191,     "radius": 43 }
   ]
   }

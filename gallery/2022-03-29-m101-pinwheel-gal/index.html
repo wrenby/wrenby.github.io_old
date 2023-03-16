@@ -10,8 +10,8 @@
   </title>
   <meta name="description" content="A spiral galaxy in the constellation Ursa Major" /><meta name="generator" content="Hugo 0.110.0"><link
     rel="stylesheet"
-    href="https://astro.wren.dev/css/styles.min.2da4521b2193c8d7fa4d21649a7d764304d9daf5303dc6df190c4608152b9d32.css"
-    integrity="sha256-LaRSGyGTyNf6TSFkmn12QwTZ2vUwPcbfGQxGCBUrnTI="
+    href="https://astro.wren.dev/css/styles.min.c85b5c167afec3da3a8531edff71e1ea29d2c3903b07bc5ee7818da513be3d81.css"
+    integrity="sha256-yFtcFnr+w9o6hTHt/3Hh6inSw5A7B7xe54GNpRO+PYE="
   />
   
   
@@ -338,7 +338,7 @@
     const json_url = canvas.getAttribute("data-json");
     const orig_width = canvas.getAttribute("data-width");
     const orig_height = canvas.getAttribute("data-height");
-    let scale = canvas.parentElement.offsetWidth / orig_width;
+    let scale = (canvas.parentElement.offsetWidth * window.devicePixelRatio) / orig_width;
 
     if (json_url && canvas.getContext) {
       const ctx = canvas.getContext("2d");
@@ -347,8 +347,8 @@
         .then(json => {
           function draw(ev) {
             
-            canvas.width = canvas.parentElement.offsetWidth;
-            canvas.height = canvas.parentElement.offsetHeight;
+            canvas.width = canvas.parentElement.offsetWidth * window.devicePixelRatio;
+            canvas.height = canvas.parentElement.offsetHeight * window.devicePixelRatio;
             scale = canvas.width / orig_width;
 
             let highlight_index = -1;
