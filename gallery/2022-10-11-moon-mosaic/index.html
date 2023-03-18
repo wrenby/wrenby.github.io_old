@@ -10,8 +10,8 @@
   </title>
   <meta name="description" content="In 6K resolution" /><meta name="generator" content="Hugo 0.110.0"><link
     rel="stylesheet"
-    href="https://astro.wren.dev/css/styles.min.7de2fba5fa3325cff01ee7653e87f039ad32283adb25716b05e4b5319c99c5c0.css"
-    integrity="sha256-feL7pfozJc/wHudlPofwOa0yKDrbJXFrBeS1MZyZxcA="
+    href="https://astro.wren.dev/css/styles.min.1872a90e78d38eb5bf17b2c9a8137507cd220ad150c00cef1a9a89cbcc81c92d.css"
+    integrity="sha256-GHKpDnjTjrW/F7LJqBN1B80iCtFQwAzvGpqJy8yByS0="
   />
   
   
@@ -109,19 +109,19 @@
 
   
     <div class="relative max-w-5xl mx-auto px-4">
-      <a href="/img/2022-10-11%20moon%20mosaic.png">
+      <a data-href="/img/2022-10-11%20moon%20mosaic.png" id="img_anchor">
         
         
         
         <div class="relative">
           <img
             srcset=", /img/2022-10-11%20moon%20mosaic_hucc0da25cb1edb44145ab8f124771a0b3_38585594_512x0_resize_q90_bgffffff_lanczos_3.jpg 512w, /img/2022-10-11%20moon%20mosaic_hucc0da25cb1edb44145ab8f124771a0b3_38585594_768x0_resize_q90_bgffffff_lanczos_3.jpg 768w, /img/2022-10-11%20moon%20mosaic_hucc0da25cb1edb44145ab8f124771a0b3_38585594_1024x0_resize_q90_bgffffff_lanczos_3.jpg 1024w"
-            src="/img/2022-10-11%20moon%20mosaic_hucc0da25cb1edb44145ab8f124771a0b3_38585594_1024x0_resize_q90_bgffffff_lanczos_3.jpg"
+            src="/img/2022-10-11%20moon%20mosaic.png"
             sizes="100vw"
             alt="Full Moon Mosaic"
             class="rounded-lg shadow-sm w-full object-contain"
             id="featured_image" />
-          <div class="absolute text-xl prose-dark" id="clickme">
+          <div class="absolute text-xl prose-dark flex-col" id="clickme">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hand-click" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <path d="M8 13v-8.5a1.5 1.5 0 0 1 3 0v7.5"></path>
@@ -133,7 +133,11 @@
               <path d="M14 3l1 -1"></path>
               <path d="M15 6h1"></path>
             </svg>
-            Click for full-resolution image
+            <div id="clickme-text" class="text-center">
+              Click for full-resolution image
+              <br />
+              Hover for annotations
+            </div>
           </div>
           <div class="absolute" id="annotations-div"><canvas id="annotations" role="presentation" data-json="/annotations/2022-10-11 moon mosaic.json" data-width = "5960" data-height="5879"></canvas>
             <div id="annotations-tooltip" class="absolute bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5 rounded-md"></div>
@@ -282,8 +286,21 @@
   </div>
 </div>
 <script>
+    const img_anchor = document.getElementById("img_anchor");
+    if (window.matchMedia( "(hover: none)" ).matches) {
+      const clickme_text = document.getElementById("clickme-text");
+
+      clickme_text.innerHTML = "Long press for full-resolution image<br />Tap for annotations";
+      img_anchor.oncontextmenu = (ev) => {
+        ev.preventDefault();
+        window.open(img_anchor.getAttribute("data-href"));
+      }
+
+    } else {
+      img_anchor.setAttribute("href", img_anchor.getAttribute("data-href"));
+    }
     
-    const img = document.getElementById("featured_image");
+    let img = document.getElementById("featured_image");
     const clickme = document.getElementById("clickme");
     if (img && clickme) {
       
@@ -428,8 +445,8 @@
             }
           }
           draw(null);
-          canvas.onmousemove = draw;
-          canvas.onmouseleave = ev => draw(null);
+          img.onmousemove = draw;
+          img.onmouseleave = ev => draw(null);
         })
     }
   </script>
@@ -587,7 +604,6 @@
       const obj_rect = term_elem.getBoundingClientRect();
       const tooltip_rect = tooltip.getBoundingClientRect();
       const definition_rect = tooltip.firstElementChild.getBoundingClientRect();
-      console.log(tooltip);
 
       let goalX = obj_rect.left + obj_rect.width/2 - definition_rect.width/2;
       let goalY = obj_rect.top - definition_rect.height;
