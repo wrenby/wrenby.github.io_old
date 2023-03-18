@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Galleries on Nights of Wren</title>
+    <title>Gallery on Nights of Wren</title>
     <link>https://astro.wren.dev/gallery/</link>
-    <description>Recent content in Galleries on Nights of Wren</description>
+    <description>Recent content in Gallery on Nights of Wren</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 16 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://astro.wren.dev/gallery/index.xml" rel="self" type="application/rss+xml" />
     <item>
