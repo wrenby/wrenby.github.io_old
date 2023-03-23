@@ -10,10 +10,39 @@
   </title>
   <meta name="description" content="Waxing gibbous" /><meta name="generator" content="Hugo 0.110.0"><link
     rel="stylesheet"
-    href="https://astro.wren.dev/css/styles.min.1872a90e78d38eb5bf17b2c9a8137507cd220ad150c00cef1a9a89cbcc81c92d.css"
-    integrity="sha256-GHKpDnjTjrW/F7LJqBN1B80iCtFQwAzvGpqJy8yByS0="
+    href="https://astro.wren.dev/css/styles.min.e2d64c5cb0630a2fe7057abdcadfadbcf621b58de1987e5cfcb6483d2a8e076b.css"
+    integrity="sha256-4tZMXLBjCi/nBXq9yt+tvPYhtY3hmH5c/LZIPSqOB2s="
   />
   
+  
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+      integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv"
+      crossorigin="anonymous"
+    >
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+      integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+      crossorigin="anonymous"
+    ></script>
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js"
+      integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script>
+
+  
+
+  
+    <script
+      src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"
+      integrity="sha384-+83ma0Y8eQWtTIhmx2gjueu3BY0XU4gX4EkL12u3M+WPc4SDskKaIpIL7QiB8ikh"
+      crossorigin="anonymous"
+    ></script>
   
 
   <meta property="og:title" content="Warmup Moonshot" />
@@ -48,7 +77,7 @@
     Nights of Wren
     
   </a>
-  <button class="mobile-menu-button md:hidden">
+  <button class="mobile-menu-button md:hidden" aria-label="Mobile Menu">
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
       <line x1="4" y1="8" x2="20" y2="8" />
@@ -171,7 +200,7 @@
     </h5>
 
     <p>Back before I had my trusty electronic focuser or the 3D-printed <a href="https://en.wikipedia.org/wiki/Bahtinov_mask">Bahtinov mask</a> I used before that, I used to warm up with some quick pictures of the moon to verify that I was in-focus, and that my telescope mount could find its targets with reasonable accuracy. I&rsquo;ve always been happy with how this one turned out, so I thought I&rsquo;d upload it as a mini behind the scenes.</p>
-<p>Captured using a Fujifilm X-A5 and a GSO 6&quot; F/4 Newtonian mounted on an untracked Celestron AVX. This image is a <span class="term" data-term=stack>stack</span> of 25x1⁄640s light frames taken at 200 ISO. Processed with (1) Siril for stacking, calibration, and deconvolution, and (2) GIMP for the adjustments to brightness and contrast.</p>
+<p>Captured using a Fujifilm X-A5 and a GSO 6&quot; F/4 Newtonian mounted on an untracked Celestron AVX. This image is a <span class="term" data-term=stack>stack</span> of 25x\(\frac{1}{640}\)s light frames taken at 200 ISO. Processed with (1) Siril for stacking, calibration, and deconvolution, and (2) GIMP for the adjustments to brightness and contrast.</p>
 
   </article><div class="bg-blue-100 dark:bg-gray-900">
   <div class="container px-6 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -624,6 +653,5 @@
       tooltip.style.left = (goalX + window.pageXOffset) - (tooltip_rect.width - definition_rect.width) / 2 + "px";
     }
   }
-</script>
-</body>
+</script></body>
 </html>

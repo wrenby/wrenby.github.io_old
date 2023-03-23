@@ -8,17 +8,25 @@
   <title>
     emission-nebula - Nights of Wren
   </title>
-  <meta name="description" content="" /><meta name="generator" content="Hugo 0.110.0"><link
+  <meta name="description" content="Astrophotography by Wren Baxter" /><meta name="generator" content="Hugo 0.110.0"><link
     rel="stylesheet"
-    href="https://astro.wren.dev/css/styles.min.1872a90e78d38eb5bf17b2c9a8137507cd220ad150c00cef1a9a89cbcc81c92d.css"
-    integrity="sha256-GHKpDnjTjrW/F7LJqBN1B80iCtFQwAzvGpqJy8yByS0="
+    href="https://astro.wren.dev/css/styles.min.e2d64c5cb0630a2fe7057abdcadfadbcf621b58de1987e5cfcb6483d2a8e076b.css"
+    integrity="sha256-4tZMXLBjCi/nBXq9yt+tvPYhtY3hmH5c/LZIPSqOB2s="
   />
   
   
 
+  
+    <script
+      src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"
+      integrity="sha384-+83ma0Y8eQWtTIhmx2gjueu3BY0XU4gX4EkL12u3M+WPc4SDskKaIpIL7QiB8ikh"
+      crossorigin="anonymous"
+    ></script>
+  
+
   <link rel="alternate" type="application/rss+xml" href="https://astro.wren.dev/tags/emission-nebula/index.xml" title="Nights of Wren" />
   <meta property="og:title" content="emission-nebula" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="Astrophotography by Wren Baxter" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://astro.wren.dev/tags/emission-nebula/" />
 <meta property="og:site_name" content="Nights of Wren" />
@@ -26,10 +34,10 @@
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="emission-nebula"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="Astrophotography by Wren Baxter"/>
 
   <meta itemprop="name" content="emission-nebula">
-<meta itemprop="description" content="">
+<meta itemprop="description" content="Astrophotography by Wren Baxter">
 
   <script>
     
@@ -43,7 +51,7 @@
     Nights of Wren
     
   </a>
-  <button class="mobile-menu-button md:hidden">
+  <button class="mobile-menu-button md:hidden" aria-label="Mobile Menu">
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
       <line x1="4" y1="8" x2="20" y2="8" />
@@ -103,8 +111,10 @@
   <h1 class="container px-6 pt-6 mx-auto text-3xl font-bold">emission-nebula</h1>
 
   
-  <div class="container p-6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
-    <div class="p-2">
+  
+    <div class="pagination__container container p-6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8"
+    data-infinite-scroll='{ "path": ".pagination__next", "append": ".blog-card", "history": "true", "hideNav": ".pagination", "status": ".page-load-status", "history": "false" }'>
+      <div class="p-2 blog-card">
 <a href="https://astro.wren.dev/gallery/2022-05-30-c33-eastern-veil-neb/">
   
   
@@ -142,7 +152,7 @@
 </a>
   
 </div>
-<div class="p-2">
+<div class="p-2 blog-card">
 <a href="https://astro.wren.dev/gallery/2022-05-20-sh2-142-wizard-neb/">
   
   
@@ -180,7 +190,7 @@
 </a>
   
 </div>
-<div class="p-2">
+<div class="p-2 blog-card">
 <a href="https://astro.wren.dev/gallery/2022-05-10-ic5067-pelican-neb/">
   
   
@@ -218,7 +228,7 @@
 </a>
   
 </div>
-<div class="p-2">
+<div class="p-2 blog-card">
 <a href="https://astro.wren.dev/gallery/2022-03-24-m42-orion-neb/">
   
   
@@ -257,9 +267,18 @@
   
 </div>
 
-  </div><div class="grid place-items-center mb-8">
-  
-</div>
+    </div>
+    <div class="page-load-status hidden">
+      <div class="infinite-scroll-request loader-ellipse">
+        <span class="loader-ellipse__dot"></span>
+        <span class="loader-ellipse__dot"></span>
+        <span class="loader-ellipse__dot"></span>
+        <span class="loader-ellipse__dot"></span>
+      </div>
+      <p class="infinite-scroll-last hidden text-center text-gray-500">End of content</p>
+      <p class="infinite-scroll-error hidden text-center text-gray-500">Error loading next page</p>
+    </div>
+  <div class="grid place-items-center mb-8"></div>
 <div class="bg-blue-100 dark:bg-gray-900">
   <div class="container px-6 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
     <div>
@@ -546,6 +565,5 @@
       tooltip.style.left = (goalX + window.pageXOffset) - (tooltip_rect.width - definition_rect.width) / 2 + "px";
     }
   }
-</script>
-</body>
+</script></body>
 </html>
