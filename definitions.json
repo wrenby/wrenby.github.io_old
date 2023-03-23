@@ -15,6 +15,7 @@
     "ha": "The 656nm wavelength (deep red) light emitted when an electron in a hydrogen atom falls from its third energy level to its second",
     "stellar death": "A star is considered dead when there is no more nuclear fusion occurring in its core, even if what remains may still radiate heat or light through other means",
     "light year": "A unit of distance which measures the distance light travels in a year, approximately equal to 6 trillion miles",
+    "planetary nebula": "The outer layers of a dead low-mass star, cast out into unique structures and made to glow by the radiation of the white dwarf left at its center",
 
     "binning": "A camera combining square regions of adjacent pixels into one \"super pixel\" on a hardware level, which trades away higher resolution in order to reduce read noise. \"Binning X\" means each super pixel is X by X true pixels",
     "dither": "A technique to reduce noise due to <a href='https://en.wikipedia.org/wiki/Color_filter_array'>color filter arrays</a> and electronic interference from the camera, accomplished by moving the frame slightly between exposures",

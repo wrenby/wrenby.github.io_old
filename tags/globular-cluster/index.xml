@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>globular-cluster on Nights of Wren</title>
+    <link>https://astro.wren.dev/tags/globular-cluster/</link>
+    <description>Recent content in globular-cluster on Nights of Wren</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 11 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://astro.wren.dev/tags/globular-cluster/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>M 13, Hercules Globular Cluster</title>
+      <link>https://astro.wren.dev/gallery/2022-04-11-m13-hercules-glob/</link>
+      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://astro.wren.dev/gallery/2022-04-11-m13-hercules-glob/</guid>
+      <description>Discovered in 1714 by Edmond Halley of comet fame, M 13 is one of about 160 known globular clusters orbiting the Milky Way[1] &amp;ndash; dense clusters of upwards of several hundred thousand stars that orbit around a host galaxy. Their origins are not well-understood since most of them are on the order of 10 billion years old, but they may be a halfway step between an open star cluster and a compact galaxy.</description>
+    </item>
+    
+  </channel>
+</rss>
