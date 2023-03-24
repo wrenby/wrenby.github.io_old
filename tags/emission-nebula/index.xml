@@ -5,7 +5,25 @@
     <link>https://astro.wren.dev/tags/emission-nebula/</link>
     <description>Recent content in emission-nebula on Nights of Wren</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 30 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://astro.wren.dev/tags/emission-nebula/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://astro.wren.dev/tags/emission-nebula/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>M 97, The Owl Nebula</title>
+      <link>https://astro.wren.dev/gallery/2023-02-16-m97-owl-neb/</link>
+      <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://astro.wren.dev/gallery/2023-02-16-m97-owl-neb/</guid>
+      <description>What to do with a planetary imaging train after the planets are out of sight? My main camera was out of commission, so I had to make due with the setup I was using: a high-magnification lens paired a camera with very small pixels, on an unguided mount that I never bothered to accurately polar align. Not ideal for dimmer targets, but I figured since the camera I was using had low read noise, I could just take a few hundred or thousand short exposures and still get something useful through the noise.</description>
+    </item>
+    
+    <item>
+      <title>M 27, The Dumbbell Nebula</title>
+      <link>https://astro.wren.dev/gallery/2022-06-18-m27-dumbbell-neb/</link>
+      <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://astro.wren.dev/gallery/2022-06-18-m27-dumbbell-neb/</guid>
+      <description>The Dumbbell Nebula (also known as M 27, NGC 6853, PK 060-03.1, and The Apple Core Nebula) is a vibrant funeral display of a star estimated to have died around 10,000 years ago. What remains is a white dwarf, surrounded by a glowing cloud of gas that made up its outer layers as a red giant. The Dumbbell Nebula was discovered in 1764, and was the first of its kind to be found.</description>
+    </item>
+    
     <item>
       <title>C 33, The Eastern Veil Nebula</title>
       <link>https://astro.wren.dev/gallery/2022-05-30-c33-eastern-veil-neb/</link>
