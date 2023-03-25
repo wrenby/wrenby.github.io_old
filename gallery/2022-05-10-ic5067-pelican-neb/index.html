@@ -336,7 +336,7 @@
     if (window.matchMedia( "(hover: none)" ).matches) {
       const clickme_text = document.getElementById("clickme-text");
 
-      if (document.getElementById("annotations_div")) {
+      if (document.getElementById("annotations-div")) {
         clickme_text.innerHTML = "Long press for full-resolution image<br />Tap for annotations";
       } else {
         
@@ -363,144 +363,147 @@
         clickme.style.animationPlayState = "running";
       }
     }
+  </script>
+  
+    <script>
+      const tooltip = document.getElementById("annotations-tooltip");
+      const canvas = document.getElementById("annotations");
+      const json_url = canvas.getAttribute("data-json");
+      const orig_width = canvas.getAttribute("data-width");
+      const orig_height = canvas.getAttribute("data-height");
+      let css_scale = canvas.parentElement.offsetWidth / orig_width;
+      let canvas_scale = css_scale * window.devicePixelRatio;
 
-    const tooltip = document.getElementById("annotations-tooltip");
-    const canvas = document.getElementById("annotations");
-    const json_url = canvas.getAttribute("data-json");
-    const orig_width = canvas.getAttribute("data-width");
-    const orig_height = canvas.getAttribute("data-height");
-    let css_scale = canvas.parentElement.offsetWidth / orig_width;
-    let canvas_scale = css_scale * window.devicePixelRatio;
+      if (json_url && canvas.getContext) {
+        const ctx = canvas.getContext("2d");
+        fetch(json_url)
+          .then(response => response.json())
+          .then(json => {
+            function draw(ev) {
+              
+              canvas.width = canvas.parentElement.offsetWidth * window.devicePixelRatio;
+              canvas.height = canvas.parentElement.offsetHeight * window.devicePixelRatio;
+              canvas_scale = canvas.width / orig_width;
+              css_scale = canvas_scale / window.devicePixelRatio;
 
-    if (json_url && canvas.getContext) {
-      const ctx = canvas.getContext("2d");
-      fetch(json_url)
-        .then(response => response.json())
-        .then(json => {
-          function draw(ev) {
-            
-            canvas.width = canvas.parentElement.offsetWidth * window.devicePixelRatio;
-            canvas.height = canvas.parentElement.offsetHeight * window.devicePixelRatio;
-            canvas_scale = canvas.width / orig_width;
-            css_scale = canvas_scale / window.devicePixelRatio;
+              let highlight_index = -1;
+              let smallest_annotation_radius = 999999999999;
+              let smallest_distance_squared = 999999999999;
 
-            let highlight_index = -1;
-            let smallest_annotation_radius = 999999999999;
-            let smallest_distance_squared = 999999999999;
-
-            if (ev) {
-              for (const [i, a] of json["annotations"].entries()) {
-                if (a["type"] == "star") {
-                  
-                  distance_squared = Math.pow(a["pixelx"] * css_scale - ev.layerX, 2) + Math.pow(a["pixely"] * css_scale - ev.layerY, 2);
-                  const scaled_radius = 9;
-                  if (distance_squared <= scaled_radius * scaled_radius && scaled_radius <= smallest_annotation_radius && distance_squared < smallest_distance_squared) {
-                    smallest_distance_squared = distance_squared;
-                    smallest_annotation_radius = scaled_radius;
-                    highlight_index = i;
-                  }
-                } else if (a["type"] == "ngc") {
-                  
-                  distance_squared = Math.pow(a["pixelx"] * css_scale - ev.layerX, 2) + Math.pow(a["pixely"] * css_scale - ev.layerY, 2);
-                  const scaled_radius = a["radius"] * css_scale;
-                  if (distance_squared < scaled_radius * scaled_radius && scaled_radius < smallest_annotation_radius) {
-                    smallest_distance_squared = distance_squared;
-                    smallest_annotation_radius = scaled_radius;
-                    highlight_index = i;
-                  } else if (distance_squared == scaled_radius * scaled_radius  && scaled_radius == smallest_annotation_radius && distance_squared < smallest_distance_squared) {
-                    smallest_distance_squared = distance_squared;
-                    smallest_annotation_radius = scaled_radius;
-                    highlight_index = i;
+              if (ev) {
+                for (const [i, a] of json["annotations"].entries()) {
+                  if (a["type"] == "star") {
+                    
+                    distance_squared = Math.pow(a["pixelx"] * css_scale - ev.layerX, 2) + Math.pow(a["pixely"] * css_scale - ev.layerY, 2);
+                    const scaled_radius = 9;
+                    if (distance_squared <= scaled_radius * scaled_radius && scaled_radius <= smallest_annotation_radius && distance_squared < smallest_distance_squared) {
+                      smallest_distance_squared = distance_squared;
+                      smallest_annotation_radius = scaled_radius;
+                      highlight_index = i;
+                    }
+                  } else if (a["type"] == "ngc") {
+                    
+                    distance_squared = Math.pow(a["pixelx"] * css_scale - ev.layerX, 2) + Math.pow(a["pixely"] * css_scale - ev.layerY, 2);
+                    const scaled_radius = a["radius"] * css_scale;
+                    if (distance_squared < scaled_radius * scaled_radius && scaled_radius < smallest_annotation_radius) {
+                      smallest_distance_squared = distance_squared;
+                      smallest_annotation_radius = scaled_radius;
+                      highlight_index = i;
+                    } else if (distance_squared == scaled_radius * scaled_radius  && scaled_radius == smallest_annotation_radius && distance_squared < smallest_distance_squared) {
+                      smallest_distance_squared = distance_squared;
+                      smallest_annotation_radius = scaled_radius;
+                      highlight_index = i;
+                    }
                   }
                 }
               }
-            }
 
-            let highlight = null;
-            for (const [i, a] of json["annotations"].entries()) {
-              if (i == highlight_index) {
-                highlight = a;
-                continue;
-              }
-              if (a["type"] == "star") {
-                
-                const scaled_x = a["pixelx"] * canvas_scale;
-                const scaled_y = a["pixely"] * canvas_scale;
-                const scaled_offset = 20 * window.devicePixelRatio;
-                const scaled_offset2 = 7.5 * window.devicePixelRatio;
+              let highlight = null;
+              for (const [i, a] of json["annotations"].entries()) {
+                if (i == highlight_index) {
+                  highlight = a;
+                  continue;
+                }
+                if (a["type"] == "star") {
+                  
+                  const scaled_x = a["pixelx"] * canvas_scale;
+                  const scaled_y = a["pixely"] * canvas_scale;
+                  const scaled_offset = 20 * window.devicePixelRatio;
+                  const scaled_offset2 = 7.5 * window.devicePixelRatio;
 
-                ctx.beginPath();
-                ctx.moveTo(scaled_x - scaled_offset, scaled_y);
-                ctx.lineTo(scaled_x - scaled_offset2, scaled_y);
-                ctx.moveTo(scaled_x + scaled_offset, scaled_y);
-                ctx.lineTo(scaled_x + scaled_offset2, scaled_y);
-                ctx.moveTo(scaled_x, scaled_y - scaled_offset);
-                ctx.lineTo(scaled_x, scaled_y - scaled_offset2);
-                ctx.moveTo(scaled_x, scaled_y + scaled_offset);
-                ctx.lineTo(scaled_x, scaled_y + scaled_offset2);
-                ctx.strokeStyle = "rgb(50, 255, 50, 1)"
-                ctx.lineWidth = 1.25 * window.devicePixelRatio;
-                ctx.stroke();
-              } else if (a["type"] == "ngc") {
-                
-                ctx.beginPath();
-                ctx.arc(a["pixelx"] * canvas_scale, a["pixely"] * canvas_scale, a["radius"] * canvas_scale, 0, 2*Math.PI);
-                ctx.strokeStyle = "rgb(150, 150, 150, 1)"
-                ctx.lineWidth = 0.5 * window.devicePixelRatio;
-                ctx.stroke();
-              }
-            }
-
-            if (highlight) {
-              const scaled_x = highlight["pixelx"] * canvas_scale;
-              const scaled_y = highlight["pixely"] * canvas_scale;
-              if (highlight["type"] == "star") {
-                
-                const scaled_offset = 25 * window.devicePixelRatio;
-                const scaled_offset2 = 7.5 * window.devicePixelRatio;
-
-                ctx.beginPath();
-                ctx.moveTo(scaled_x - scaled_offset, scaled_y);
-                ctx.lineTo(scaled_x - scaled_offset2, scaled_y);
-                ctx.moveTo(scaled_x + scaled_offset, scaled_y);
-                ctx.lineTo(scaled_x + scaled_offset2, scaled_y);
-                ctx.moveTo(scaled_x, scaled_y - scaled_offset);
-                ctx.lineTo(scaled_x, scaled_y - scaled_offset2);
-                ctx.moveTo(scaled_x, scaled_y + scaled_offset);
-                ctx.lineTo(scaled_x, scaled_y + scaled_offset2);
-                ctx.strokeStyle = "rgb(30, 255, 30, 1)"
-                ctx.lineWidth = 2 * window.devicePixelRatio;
-                ctx.stroke();
-
-                tooltip.style.top = highlight["pixely"] * css_scale + "px";
-              } else if (highlight["type"] == "ngc") {
-                
-                const scaled_radius = highlight["radius"] * canvas_scale
-                ctx.beginPath();
-                ctx.arc(scaled_x, scaled_y, scaled_radius, 0, 2*Math.PI);
-                ctx.strokeStyle = "rgb(200, 200, 200, 1)"
-                ctx.lineWidth = 1 * window.devicePixelRatio;
-                ctx.stroke();
-
-                
-                tooltip.style.top = Math.min(highlight["pixely"] * css_scale + highlight["radius"] * css_scale / 3, canvas.height) + "px";
+                  ctx.beginPath();
+                  ctx.moveTo(scaled_x - scaled_offset, scaled_y);
+                  ctx.lineTo(scaled_x - scaled_offset2, scaled_y);
+                  ctx.moveTo(scaled_x + scaled_offset, scaled_y);
+                  ctx.lineTo(scaled_x + scaled_offset2, scaled_y);
+                  ctx.moveTo(scaled_x, scaled_y - scaled_offset);
+                  ctx.lineTo(scaled_x, scaled_y - scaled_offset2);
+                  ctx.moveTo(scaled_x, scaled_y + scaled_offset);
+                  ctx.lineTo(scaled_x, scaled_y + scaled_offset2);
+                  ctx.strokeStyle = "rgb(50, 255, 50, 1)"
+                  ctx.lineWidth = 1.25 * window.devicePixelRatio;
+                  ctx.stroke();
+                } else if (a["type"] == "ngc") {
+                  
+                  ctx.beginPath();
+                  ctx.arc(a["pixelx"] * canvas_scale, a["pixely"] * canvas_scale, a["radius"] * canvas_scale, 0, 2*Math.PI);
+                  ctx.strokeStyle = "rgb(150, 150, 150, 1)"
+                  ctx.lineWidth = 0.5 * window.devicePixelRatio;
+                  ctx.stroke();
+                }
               }
 
-              tooltip.innerText = highlight["names"].join(" / ");
-              let desired_left = scaled_x / window.devicePixelRatio;
-              let actual_left = Math.min(desired_left, canvas.parentElement.offsetWidth - canvas.parentElement.offsetLeft - tooltip.offsetWidth)
-              tooltip.style.left = actual_left + "px"
-              tooltip.style.visibility = "visible";
-            } else {
-              tooltip.style.visibility = "hidden";
+              if (highlight) {
+                const scaled_x = highlight["pixelx"] * canvas_scale;
+                const scaled_y = highlight["pixely"] * canvas_scale;
+                if (highlight["type"] == "star") {
+                  
+                  const scaled_offset = 25 * window.devicePixelRatio;
+                  const scaled_offset2 = 7.5 * window.devicePixelRatio;
+
+                  ctx.beginPath();
+                  ctx.moveTo(scaled_x - scaled_offset, scaled_y);
+                  ctx.lineTo(scaled_x - scaled_offset2, scaled_y);
+                  ctx.moveTo(scaled_x + scaled_offset, scaled_y);
+                  ctx.lineTo(scaled_x + scaled_offset2, scaled_y);
+                  ctx.moveTo(scaled_x, scaled_y - scaled_offset);
+                  ctx.lineTo(scaled_x, scaled_y - scaled_offset2);
+                  ctx.moveTo(scaled_x, scaled_y + scaled_offset);
+                  ctx.lineTo(scaled_x, scaled_y + scaled_offset2);
+                  ctx.strokeStyle = "rgb(30, 255, 30, 1)"
+                  ctx.lineWidth = 2 * window.devicePixelRatio;
+                  ctx.stroke();
+
+                  tooltip.style.top = highlight["pixely"] * css_scale + "px";
+                } else if (highlight["type"] == "ngc") {
+                  
+                  const scaled_radius = highlight["radius"] * canvas_scale
+                  ctx.beginPath();
+                  ctx.arc(scaled_x, scaled_y, scaled_radius, 0, 2*Math.PI);
+                  ctx.strokeStyle = "rgb(200, 200, 200, 1)"
+                  ctx.lineWidth = 1 * window.devicePixelRatio;
+                  ctx.stroke();
+
+                  
+                  tooltip.style.top = Math.min(highlight["pixely"] * css_scale + highlight["radius"] * css_scale / 3, canvas.height) + "px";
+                }
+
+                tooltip.innerText = highlight["names"].join(" / ");
+                let desired_left = scaled_x / window.devicePixelRatio;
+                let actual_left = Math.min(desired_left, canvas.parentElement.offsetWidth - canvas.parentElement.offsetLeft - tooltip.offsetWidth)
+                tooltip.style.left = actual_left + "px"
+                tooltip.style.visibility = "visible";
+              } else {
+                tooltip.style.visibility = "hidden";
+              }
             }
-          }
-          draw(null);
-          img.onmousemove = draw;
-          img.onmouseleave = ev => draw(null);
-        })
-    }
-  </script>
+            draw(null);
+            img.onmousemove = draw;
+            img.onmouseleave = ev => draw(null);
+          })
+      }
+    </script>
+  
 
     </main><footer class="container p-6 mx-auto flex justify-between items-center">
   <span class="text-sm font-light">
