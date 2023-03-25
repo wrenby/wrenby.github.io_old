@@ -114,6 +114,8 @@
   
 
   
+
+  
     <div class="relative max-w-5xl mx-auto px-4">
       <a data-href="/img/2022-05-15%20lunar%20eclipse.png" id="img_anchor">
         
@@ -144,9 +146,7 @@
               
             </div>
           </div>
-          <div class="absolute" id="annotations-div"><canvas id="annotations" role="presentation" data-json="/annotations/2022-05-15 lunar eclipse.json" data-width = "4096" data-height="2730"></canvas>
-            <div id="annotations-tooltip" class="absolute bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5 rounded-md"></div>
-          </div>
+          
           <div id="datestr" class="absolute top-4 right-4 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5">
             📷 
   
@@ -243,7 +243,7 @@
       
       <li>
         <a
-          href="https://reddit.com/wrenby_astro"
+          href="https://reddit.com/u/wrenby_astro"
           target="_blank"
           rel="noopener"
           aria-label="Medium"
@@ -309,7 +309,12 @@
     if (window.matchMedia( "(hover: none)" ).matches) {
       const clickme_text = document.getElementById("clickme-text");
 
-      clickme_text.innerHTML = "Long press for full-resolution image<br />Tap for annotations";
+      if (document.getElementById("annotations_div")) {
+        clickme_text.innerHTML = "Long press for full-resolution image<br />Tap for annotations";
+      } else {
+        
+        clickme_text.innerHTML = "Long press for full-resolution image";
+      }
       img_anchor.oncontextmenu = (ev) => {
         ev.preventDefault();
         window.open(img_anchor.getAttribute("data-href"));

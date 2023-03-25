@@ -1,0 +1,11 @@
+{
+  "status": "solved",
+  "git-revision": 0.93,
+  "git-date": "Mon_Dec_19_16:41:15_2022_-0500",
+  "annotations": [
+{ "type"   : "star",   "names"  : [ "M51-ULS-1b" ],   "pixelx" : 1491,   "pixely" : 884.504 },
+{ "type"   : "ngc",   "names"  : [ "IC 4263" ],   "pixelx" : 2342.5,   "pixely" : 325.504,   "radius" : 43.7228 },
+{ "type"   : "ngc",   "names"  : [ "NGC 5194", "Whirlpool Galaxy", "M 51a" ],   "pixelx" : 1500.83,   "pixely" : 968.101,   "radius" : 260.549 },
+{ "type"   : "ngc",   "names"  : [ "NGC 5195", "M 51b" ],   "pixelx" : 1259.11,   "pixely" : 1012.6,   "radius" : 140.629 }
+]
+}

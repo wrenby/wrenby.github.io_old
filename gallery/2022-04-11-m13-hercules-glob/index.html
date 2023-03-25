@@ -114,6 +114,10 @@
   
 
   
+    
+  
+
+  
     <div class="relative max-w-5xl mx-auto px-4">
       <a data-href="/img/2022-04-11%20m13%20hercules%20glob.png" id="img_anchor">
         
@@ -142,14 +146,16 @@
             <div id="clickme-text" class="text-center">
               Click for full-resolution image
               
-              <br />
-              Hover for annotations
+                <br />
+                Hover for annotations
               
             </div>
           </div>
-          <div class="absolute" id="annotations-div"><canvas id="annotations" role="presentation" data-json="/annotations/2022-04-11 m13 hercules glob.json" data-width = "3855" data-height="2570"></canvas>
-            <div id="annotations-tooltip" class="absolute bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5 rounded-md"></div>
-          </div>
+          
+            <div class="absolute" id="annotations-div"><canvas id="annotations" role="presentation" data-json='annotations.json' data-width = "3855" data-height="2570"></canvas>
+              <div id="annotations-tooltip" class="absolute bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5 rounded-md"></div>
+            </div>
+          
           <div id="datestr" class="absolute top-4 right-4 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5">
             📷 
   
@@ -206,7 +212,7 @@
 
     <p>Discovered in 1714 by Edmond Halley of comet fame, <span class="term" data-term=m>M</span> 13 is one of about 160 known globular clusters orbiting the Milky Way<sup><a href="https://spider.seds.org/spider/MWGC/mwgc.html">[1]</a></sup> &ndash; dense clusters of upwards of several hundred thousand stars that orbit around a host galaxy. Their origins are not well-understood since most of them are on the order of 10 billion years old, but they may be a halfway step between an open star cluster and a compact galaxy.<sup><a href="https://arxiv.org/pdf/1911.02835.pdf#section.9">[2]</a></sup> Because of how tightly-packed their stars are, globular clusters are excellent environments to study certain interactions that are otherwise very rare.</p>
 <p>M 13 is noteworthy among globular clusters for being one of the largest and brightest visible in the Northern Hemisphere. It was chosen as the target of the 1974 <a href="https://en.wikipedia.org/wiki/Arecibo_message">Arecibo Message</a>: one of the first attempts at interstellar communication with an extraterrestrial intelligence, a short pictographic message with basic information about humanity which will reach the cluster in around 25,000 years. It also contains an interesting star called NGC 6205 Barnard 29 (the blue-fringed star annotated on the left side of the cluster) which is predicted to be in the process of becoming a <span class="term" data-term=planetary&#32;nebula>planetary nebula</span><sup><a href="https://ui.adsabs.harvard.edu/abs/1994A%26A...290..897C/abstract">[3]</a></sup> &ndash; a rare event for astronomers a few thousand years in the future to appreciate!</p>
-<p>Captured using a Fujifilm X-A5 and a GSO 6&quot; F/4 Newtonian mounted on an untracked Celestron AVX. I had a coma corrector at this point, but I hadn&rsquo;t yet learned that the proper backspacing changes with focal ratio, I didn&rsquo;t have any decent collimation tools, and my guide camera hadn&rsquo;t yet arrived, so my stars are still shaped pretty wonky when you zoom in on them. (This issue would continue for the remainder of the year.) This image is a <span class="term" data-term=stack>stack</span> of 34x60s light fames at 1250 ISO, calibrated with 20 flats, 15 darks, and 20 bias frames. Processed with (1) Siril for calibration, stacking, and background extraction, and (2) GIMP for wavelet decomposition and tweaks to color grading.</p>
+<p>Captured using a Fujifilm X-A5 and a GSO 6&quot; F/4 Newtonian mounted on an untracked Celestron AVX. I had a coma corrector at this point, but I hadn&rsquo;t yet learned that the proper backspacing changes with focal ratio, I didn&rsquo;t have any decent collimation tools, and my guide camera hadn&rsquo;t yet arrived, so my stars are still shaped pretty wonky when you zoom in on them. (This issue would continue for the remainder of the year.) This image is a <span class="term" data-term=stack>stack</span> of 34x60s light fames at 1250 ISO, calibrated with 20 flats, 15 darks, and 20 bias frames. Processed with (1) Siril for pre-processing, stacking, and background extraction, and (2) GIMP for wavelet decomposition and tweaks to color grading.</p>
 
   </article><div class="bg-blue-100 dark:bg-gray-900">
   <div class="container px-6 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -266,7 +272,7 @@
       
       <li>
         <a
-          href="https://reddit.com/wrenby_astro"
+          href="https://reddit.com/u/wrenby_astro"
           target="_blank"
           rel="noopener"
           aria-label="Medium"
@@ -332,7 +338,12 @@
     if (window.matchMedia( "(hover: none)" ).matches) {
       const clickme_text = document.getElementById("clickme-text");
 
-      clickme_text.innerHTML = "Long press for full-resolution image<br />Tap for annotations";
+      if (document.getElementById("annotations_div")) {
+        clickme_text.innerHTML = "Long press for full-resolution image<br />Tap for annotations";
+      } else {
+        
+        clickme_text.innerHTML = "Long press for full-resolution image";
+      }
       img_anchor.oncontextmenu = (ev) => {
         ev.preventDefault();
         window.open(img_anchor.getAttribute("data-href"));

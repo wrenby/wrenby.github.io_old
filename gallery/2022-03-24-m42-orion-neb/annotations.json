@@ -1,0 +1,16 @@
+{
+  "status": "solved",
+  "git-revision": 0.93,
+  "git-date": "Mon_Dec_19_16:41:15_2022_-0500",
+  "annotations": [
+{ "type"  : "star",   "pixelx": 396.414,         "pixely": 1066.17,         "name"  : "Hatysa",     "names" : [ "Hatysa", "ι Ori / 44 Ori" ] } ,
+{ "type"  : "star",   "pixelx": 1806.62,         "pixely": 1185.69,         "name"  : "θ1 Ori A / 41 Ori A",     "names" : [ "θ1 Ori A / 41 Ori A" ] } ,
+{ "type"  : "star",   "pixelx": 1729.27,         "pixely": 1106.04,         "name"  : "Mizan Batil II",     "names" : [ "Mizan Batil II", "θ2 Ori / 43 Ori" ] } ,
+{ "type"  : "star",   "pixelx": 1800.22,         "pixely": 1178.45,         "name"  : "θ1 Ori C / 41 Ori C",     "names" : [ "Becklin's Star", "θ1 Ori C / 41 Ori C" ] } ,
+{ "type"  : "star",   "pixelx": 1805.69,         "pixely": 1170.28,         "name"  : "θ1 Ori D / 41 Ori D",     "names" : [ "θ1 Ori D / 41 Ori D" ] } ,
+{ "type"   : "ngc",   "names"  : [ "Trapezium Cluster" ],  "pixelx": 1806.62,         "pixely": 1185.69,     "radius": 80 } ,
+{ "type"   : "ngc",   "names"  : [ "NGC 1976", "Great Orion Nebula", "Orion Nebula", "M 42" ],   "pixelx" : 1800.29,   "pixely" : 1178.19,   "radius" : 1625.08 },
+{ "type"   : "ngc",   "names"  : [ "NGC 1980", "Lower Sword" ],   "pixelx" : 396.443,   "pixely" : 1066.06,   "radius" : 209.258 },
+{ "type"   : "ngc",   "names"  : [ "NGC 1982", "Mairan's Nebula", "M 43" ],   "pixelx" : 2130.74,   "pixely" : 1012.84,   "radius" : 450.017 }
+]
+}

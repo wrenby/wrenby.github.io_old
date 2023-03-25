@@ -1,0 +1,10 @@
+{
+  "status": "solved",
+  "git-revision": 0.93,
+  "git-date": "Mon_Dec_19_16:41:15_2022_-0500",
+  "annotations": [
+{ "type"   : "ngc",   "names"  : [ "IC 1340" ],   "pixelx" : 2741.37,   "pixely" : 765.203,   "radius" : 492.607 },
+{ "type"   : "ngc",   "names"  : [ "NGC 6992" ],   "pixelx" : 1655.8,   "pixely" : 1991.61,   "radius" : 1176.61 },
+{ "type"   : "ngc",   "names"  : [ "NGC 6995" ],   "pixelx" : 2802.82,   "pixely" : 1449.08,   "radius" : 235.322 }
+]
+}

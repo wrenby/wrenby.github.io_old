@@ -1,0 +1,10 @@
+{
+  "status": "solved",
+  "git-revision": 0.93,
+  "git-date": "Mon_Dec_19_16:41:15_2022_-0500",
+  "annotations": [
+{ "type"   : "star",   "names"  : [ "NGC 6205 Barnard 29" ],   "pixelx" : 1840.19,   "pixely" : 1264.32 },
+{ "type"   : "ngc",   "names"  : [ "NGC 6205", "Hercules Globular Cluster", "M 13" ],   "pixelx" : 1950.19,   "pixely" : 1259.32,   "radius" : 421.689 },
+{ "type"   : "ngc",   "names"  : [ "NGC 6207" ],   "pixelx" : 3360.25,   "pixely" : 1452.86,   "radius" : 88.427 }
+]
+}
