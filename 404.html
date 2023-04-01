@@ -6,22 +6,19 @@
   <link rel="icon" href="/favicon.svg">
 
   <title>
-    404 Page not found - Nights of Wren
+  404 Page not found - Nights of Wren
   </title>
-  <meta name="description" content="Astrophotography by Wren Baxter" /><meta name="generator" content="Hugo 0.110.0"><link
+  <meta name="description" content="Astrophotography by Wren Baxter" /><meta name="generator" content="Hugo 0.111.3"><link
     rel="stylesheet"
-    href="https://astro.wren.dev/css/styles.min.e2d64c5cb0630a2fe7057abdcadfadbcf621b58de1987e5cfcb6483d2a8e076b.css"
-    integrity="sha256-4tZMXLBjCi/nBXq9yt+tvPYhtY3hmH5c/LZIPSqOB2s="
+    href="https://astro.wren.dev/css/styles.min.c2d7e56fc1bad1c1b38098aed4aa14b7b53412b164acd0ba4d8c4c9ce4d099de.css"
+    integrity="sha256-wtflb8G60cGzgJiu1KoUt7U0ErFkrNC6TYxMnOTQmd4="
   />
   
   
 
   
-    <script
-      src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"
-      integrity="sha384-+83ma0Y8eQWtTIhmx2gjueu3BY0XU4gX4EkL12u3M+WPc4SDskKaIpIL7QiB8ikh"
-      crossorigin="anonymous"
-    ></script>
+    
+  
   
 
   <meta property="og:title" content="404 Page not found" />
@@ -37,6 +34,8 @@
 
   <meta itemprop="name" content="404 Page not found">
 <meta itemprop="description" content="Astrophotography by Wren Baxter">
+
+  
 
   <script>
     
@@ -276,12 +275,12 @@
   }
 
   function position_tooltip(term_elem) {
-    let tooltip = term_elem.firstElementChild;
+    let tooltip = term_elem.lastElementChild;
     if (tooltip) {
       
       const obj_rect = term_elem.getBoundingClientRect();
       const tooltip_rect = tooltip.getBoundingClientRect();
-      const definition_rect = tooltip.firstElementChild.getBoundingClientRect();
+      const definition_rect = tooltip.lastElementChild.getBoundingClientRect();
 
       let goalX = obj_rect.left + obj_rect.width/2 - definition_rect.width/2;
       let goalY = obj_rect.top - definition_rect.height;

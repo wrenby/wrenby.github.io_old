@@ -1,0 +1,11 @@
+{
+  "status": "solved",
+  "git-revision": 0.93,
+  "git-date": "Mon_Dec_19_16:41:15_2022_-0500",
+  "annotations": [
+{ "type"   : "ngc",   "names"  : [ "NGC 3031", "Bode's Galaxy", "M 81" ],   "pixelx" : 1048.85,   "pixely" : 765.431,   "radius" : 246.618 },
+{ "type"   : "ngc",   "names"  : [ "NGC 3034", "Cigar Galaxy", "M 82" ],   "pixelx" : 1488.58,   "pixely" : 171.985,   "radius" : 110.062 },
+{ "type"   : "ngc",   "names"  : [ "NGC 3077", "Garland Galaxy" ],   "pixelx" : 149.813,   "pixely" : 529.483,   "radius" : 62.1766 },
+{ "type"   : "ngc",   "names"  : [ "UGC 5247" ],   "pixelx" : 1836.813,   "pixely" : 844.483,   "radius" : 32.1766 }
+]
+}
