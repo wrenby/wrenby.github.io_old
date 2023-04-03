@@ -10,10 +10,19 @@
   </title>
   <meta name="description" content="Astrophotography by Wren Baxter" /><meta name="generator" content="Hugo 0.111.3"><link
     rel="stylesheet"
-    href="https://astro.wren.dev/css/styles.min.c2d7e56fc1bad1c1b38098aed4aa14b7b53412b164acd0ba4d8c4c9ce4d099de.css"
-    integrity="sha256-wtflb8G60cGzgJiu1KoUt7U0ErFkrNC6TYxMnOTQmd4="
+    href="https://astro.wren.dev/css/styles.min.a62b9b254571a1f43e0504ef5efaaf39e916c52c6adf311ad7ee20d489263ecc.css"
+    integrity="sha256-piubJUVxofQ+BQTvXvqvOekWxSxq3zEa1+4g1IkmPsw="
   />
   
+  
+
+  
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js"
+      integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   
 
   
@@ -634,7 +643,9 @@
       placeholder="Enter search query" />
 
     <div class="search-results text-lg font-medium my-4 hidden">Results</div>
-    <ul class="search-list my-2">
+    
+    <ul class="search-list my-2" data-markroot>
+    
 
     </ul>
 
@@ -734,16 +745,15 @@
     for (t of terms) {
       const term = t.getAttribute("data-term");
       create_tooltip(t, term, definitions[term]);
+      position_tooltip(t);
     }
-    position_all_tooltips();
-    window.addEventListener("resize", position_all_tooltips);
   }
 
   function create_tooltip(term_elem, term, defn) {
     const tooltip_id = `tooltip-${term.replace(" ", "-")}`;
 
     let outer = document.createElement("span");
-    outer.setAttribute("class", "definition-outer");
+    outer.setAttribute("class", "definition-outer whitespace-normal");
     outer.setAttribute("role", "tooltip");
     outer.setAttribute("id", tooltip_id);
 
@@ -756,14 +766,6 @@
 
     term_elem.setAttribute("aria-describedby", tooltip_id);
     term_elem.addEventListener("mouseover", (ev) => position_tooltip(ev.target));
-  }
-
-  function position_all_tooltips() {
-
-    let terms = document.getElementsByClassName("term");
-    for (t of terms) {
-      position_tooltip(t);
-    }
   }
 
   function position_tooltip(term_elem) {

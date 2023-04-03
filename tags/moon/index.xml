@@ -12,7 +12,8 @@
       <pubDate>Tue, 11 Oct 2022 00:00:00 +0000</pubDate>
       
       <guid>https://astro.wren.dev/gallery/2022-10-11-moon-mosaic/</guid>
-      <description>Believe it or not, full moons are generally considered bad news for astrophotographers. Faint details in a target can easily be swamped in the strong glow of the moon, especially when considered in tandem with artificial light pollution, and seasoned lunar photographers tend to prefer the high-contrast view of shadows cast by craters. But, to my good luck, I am not a seasoned lunar photographer, and am just as impressed a full moon as the rest of the world.</description>
+      <description>Believe it or not, full moons are generally considered bad news for astrophotographers. Faint details in a target can easily be swamped in the strong glow of the moon, especially when considered in tandem with artificial light pollution, and seasoned lunar photographers tend to prefer the high-contrast view of shadows cast by craters. But, to my good luck, I am not a seasoned lunar photographer, and am just as impressed a full moon as the rest of the world. So why not take a break from the dim targets for a night and take a shot at the moon instead?
+This image is a 13-panel mosaic, with each panel made up of around 430 1.3ms frames taken at gain 0. Captured using a ZWO ASI120MM Mini, an Svbony SV137 2x Barlow lens, and a GSO 6&amp;quot; F/4 mounted on a Celestron AVX. Each panel was stacked and stretched in Siril, which was also used for wavelet decomposition, noise reduction, and deconvolution. I couldn&amp;rsquo;t find any free tools to stitch together mosaics of non-deep sky targets (Microsoft apparently had a good one according to some forum posts, but it was since discontinued), so I just did it myself in GIMP, which I also used for padding out some corners with black, painting over artifacts, and blending some seams. Also, there&amp;rsquo;s a small patch of the moon that I didn&amp;rsquo;t capture in my mosaic, and I decided to cover up with an MS Paint tier edit because I thought it was funny. I ended up putting enough time into it that it turned out to be pretty convincing if you didn&amp;rsquo;t know where to look! See if you can find it :)</description>
     </item>
     
     <item>
@@ -21,7 +22,8 @@
       <pubDate>Sun, 15 May 2022 00:00:00 +0000</pubDate>
       
       <guid>https://astro.wren.dev/gallery/2022-05-15-lunar-eclipse/</guid>
-      <description>During a lunar eclipse, the moon appears red due to the way the light interacts with Earth&amp;rsquo;s atmosphere. Since the Earth is blocking direct sunlight, the only light it can receive has been refracted through the atmosphere, and the photons most likely to survive the trip are those with longer wavelengths: red light. This phenomenon is called Rayleigh Scattering, and it&amp;rsquo;s also responsible for the color of sunsets and the sky during the day.</description>
+      <description>During a lunar eclipse, the moon appears red due to the way the light interacts with Earth&amp;rsquo;s atmosphere. Since the Earth is blocking direct sunlight, the only light it can receive has been refracted through the atmosphere, and the photons most likely to survive the trip are those with longer wavelengths: red light. This phenomenon is called Rayleigh Scattering, and it&amp;rsquo;s also responsible for the color of sunsets and the sky during the day.
+Captured using a Fujifilm X-A5 and a GSO 6&amp;quot; F/4 Newtonian mounted on a Celestron AVX. This image is a composite of two stacks of 15 2-second exposures at 800 ISO, one aligned using stars and the other using the moon. No calibration frames were used.</description>
     </item>
     
     <item>
@@ -31,7 +33,7 @@
       
       <guid>https://astro.wren.dev/gallery/2022-04-11-moon/</guid>
       <description>Back before I had my trusty electronic focuser or the 3D-printed Bahtinov mask I used before that, I used to warm up with some quick pictures of the moon to verify that I was in-focus, and that my telescope mount could find its targets with reasonable accuracy. I&amp;rsquo;ve always been happy with how this one turned out, so I thought I&amp;rsquo;d upload it as a mini behind the scenes.
-Captured using a Fujifilm X-A5 and a GSO 6&amp;quot; F/4 Newtonian mounted on an untracked Celestron AVX.</description>
+Captured using a Fujifilm X-A5 and a GSO 6&amp;quot; F/4 Newtonian mounted on an untracked Celestron AVX. This image is a stack of 25x\(\frac{1}{640}\)s light frames taken at 200 ISO. Processed with (1) Siril for stacking, calibration, and deconvolution, and (2) GIMP for the adjustments to brightness and contrast.</description>
     </item>
     
   </channel>
