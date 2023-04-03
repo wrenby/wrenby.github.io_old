@@ -108,9 +108,12 @@
   <h1 class="container px-6 pt-6 mx-auto text-3xl font-bold">globular-cluster</h1>
 
   
+    
+  
+  
   
     <div class="pagination__container container p-6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8"
-    data-infinite-scroll='{ "path": ".pagination__next", "append": ".blog-card", "history": "true", "hideNav": ".pagination", "status": ".page-load-status", "history": "false" }'>
+    data-infinite-scroll='{ "path": ".pagination__next", "prefill": "true", "append": ".blog-card", "history": "true", "hideNav": ".pagination", "status": ".page-load-status", "history": "false" }'>
       <div class="p-2 blog-card">
 <a href="https://astro.wren.dev/gallery/2022-04-11-m13-hercules-glob/">
   
@@ -569,20 +572,41 @@
 </script>
 
 <script>
+  let definitions = null;
   fetch("/definitions.json")
     .then(response => {
       return response.json();
     })
-    .then(definitions => {
+    .then(json => {
+      definitions = json;
       if (document.readySate == "loading") {
         
-        document.addEventListener("DOMContentLoaded", () => create_all_tooltips(definitions));
+        document.addEventListener("DOMContentLoaded", () => create_all_tooltips());
       } else {
-        create_all_tooltips(definitions);
+        create_all_tooltips();
       }
+
+      
+      const search_results_list = document.getElementsByClassName('search-list')[0]; 
+      const config = { attributes: false, childList: true, subtree: false }; 
+
+      const callback = (mutationList, observer) => {
+        for (const mutation of mutationList) {
+          if (mutation.type === "childList") {
+            let terms = search_results_list.getElementsByClassName("term");
+            for (t of terms) {
+              const term = t.getAttribute("data-term");
+              create_tooltip(t, term, definitions[term]);
+              position_tooltip(t);
+            }
+          }
+        }
+      };
+      const observer = new MutationObserver(callback);
+      observer.observe(search_results_list, config);
     });
 
-  function create_all_tooltips(definitions) {
+  function create_all_tooltips() {
     let terms = document.getElementsByClassName("term");
     for (t of terms) {
       const term = t.getAttribute("data-term");
@@ -602,7 +626,6 @@
 
     let inner = document.createElement("span");
     inner.setAttribute("class", "definition-inner text-sm");
-    inner.setAttribute("id", tooltip_id);
     inner.innerHTML = defn;
 
     outer.appendChild(inner);

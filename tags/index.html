@@ -20,6 +20,12 @@
     
   
   
+    <script
+      src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"
+      integrity="sha384-+83ma0Y8eQWtTIhmx2gjueu3BY0XU4gX4EkL12u3M+WPc4SDskKaIpIL7QiB8ikh"
+      crossorigin="anonymous"
+    ></script>
+  
 
   <link rel="alternate" type="application/rss+xml" href="https://astro.wren.dev/tags/index.xml" title="Nights of Wren" />
   <meta property="og:title" content="Tags" />
@@ -108,14 +114,17 @@
   <h1 class="container px-6 pt-6 mx-auto text-3xl font-bold">Tags</h1>
 
   
+    
+  
+  
   
     <div class="pagination__container container p-6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8"
-    data-infinite-scroll='{ "path": ".pagination__next", "append": ".blog-card", "history": "true", "hideNav": ".pagination", "status": ".page-load-status", "history": "false" }'>
+    data-infinite-scroll='{ "path": ".pagination__next", "prefill": "true", "append": ".blog-card", "history": "true", "hideNav": ".pagination", "status": ".page-load-status", "history": "false" }'>
       <div class="p-2 blog-card">
-<a href="https://astro.wren.dev/tags/planetary-nebula/">
+<a href="https://astro.wren.dev/tags/deep-sky/">
   
   
-  <div class="my-2 text-xl font-semibold">planetary-nebula</div>
+  <div class="my-2 text-xl font-semibold">deep-sky</div>
   <div></div>
 </a>
 
@@ -123,21 +132,10 @@
 
 </div>
 <div class="p-2 blog-card">
-<a href="https://astro.wren.dev/tags/nebula/">
+<a href="https://astro.wren.dev/tags/diffuse-nebula/">
   
   
-  <div class="my-2 text-xl font-semibold">nebula</div>
-  <div></div>
-</a>
-
-  
-
-</div>
-<div class="p-2 blog-card">
-<a href="https://astro.wren.dev/tags/messier-object/">
-  
-  
-  <div class="my-2 text-xl font-semibold">messier-object</div>
+  <div class="my-2 text-xl font-semibold">diffuse-nebula</div>
   <div></div>
 </a>
 
@@ -156,10 +154,10 @@
 
 </div>
 <div class="p-2 blog-card">
-<a href="https://astro.wren.dev/tags/deep-sky/">
+<a href="https://astro.wren.dev/tags/galaxy/">
   
   
-  <div class="my-2 text-xl font-semibold">deep-sky</div>
+  <div class="my-2 text-xl font-semibold">galaxy</div>
   <div></div>
 </a>
 
@@ -167,10 +165,21 @@
 
 </div>
 <div class="p-2 blog-card">
-<a href="https://astro.wren.dev/tags/solar-system/">
+<a href="https://astro.wren.dev/tags/globular-cluster/">
   
   
-  <div class="my-2 text-xl font-semibold">solar-system</div>
+  <div class="my-2 text-xl font-semibold">globular-cluster</div>
+  <div></div>
+</a>
+
+  
+
+</div>
+<div class="p-2 blog-card">
+<a href="https://astro.wren.dev/tags/messier-object/">
+  
+  
+  <div class="my-2 text-xl font-semibold">messier-object</div>
   <div></div>
 </a>
 
@@ -189,10 +198,54 @@
 
 </div>
 <div class="p-2 blog-card">
+<a href="https://astro.wren.dev/tags/nebula/">
+  
+  
+  <div class="my-2 text-xl font-semibold">nebula</div>
+  <div></div>
+</a>
+
+  
+
+</div>
+<div class="p-2 blog-card">
 <a href="https://astro.wren.dev/tags/planet/">
   
   
   <div class="my-2 text-xl font-semibold">planet</div>
+  <div></div>
+</a>
+
+  
+
+</div>
+<div class="p-2 blog-card">
+<a href="https://astro.wren.dev/tags/planetary-nebula/">
+  
+  
+  <div class="my-2 text-xl font-semibold">planetary-nebula</div>
+  <div></div>
+</a>
+
+  
+
+</div>
+<div class="p-2 blog-card">
+<a href="https://astro.wren.dev/tags/reflection-nebula/">
+  
+  
+  <div class="my-2 text-xl font-semibold">reflection-nebula</div>
+  <div></div>
+</a>
+
+  
+
+</div>
+<div class="p-2 blog-card">
+<a href="https://astro.wren.dev/tags/solar-system/">
+  
+  
+  <div class="my-2 text-xl font-semibold">solar-system</div>
   <div></div>
 </a>
 
@@ -211,10 +264,10 @@
 
 </div>
 <div class="p-2 blog-card">
-<a href="https://astro.wren.dev/tags/galaxy/">
+<a href="https://astro.wren.dev/tags/star-cluster/">
   
   
-  <div class="my-2 text-xl font-semibold">galaxy</div>
+  <div class="my-2 text-xl font-semibold">star-cluster</div>
   <div></div>
 </a>
 
@@ -226,17 +279,6 @@
   
   
   <div class="my-2 text-xl font-semibold">supernova-remnant</div>
-  <div></div>
-</a>
-
-  
-
-</div>
-<div class="p-2 blog-card">
-<a href="https://astro.wren.dev/tags/diffuse-nebula/">
-  
-  
-  <div class="my-2 text-xl font-semibold">diffuse-nebula</div>
   <div></div>
 </a>
 
@@ -255,27 +297,7 @@
       <p class="infinite-scroll-last hidden text-center text-gray-500">End of content</p>
       <p class="infinite-scroll-error hidden text-center text-gray-500">Error loading next page</p>
     </div>
-  <div class="grid place-items-center mb-8">
-    <ul class="pagination pagination-default">
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="First" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;&laquo;</span></a>
-      </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Previous" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;</span></a>
-      </li>
-      <li class="page-item active">
-        <a aria-current="page" aria-label="Page 1" class="page-link" role="button">1</a>
-      </li>
-      <li class="page-item">
-        <a href="/tags/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
-      </li>
-      <li class="page-item">
-        <a href="/tags/page/2/" aria-label="Next" class="page-link pagination__next" role="button"><span aria-hidden="true">&raquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/tags/page/2/" aria-label="Last" class="page-link pagination__last" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
-      </li>
-    </ul></div>
+  <div class="grid place-items-center mb-8"></div>
 <div class="bg-blue-100 dark:bg-gray-900">
   <div class="container px-4 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
     <div>
@@ -680,20 +702,41 @@
 </script>
 
 <script>
+  let definitions = null;
   fetch("/definitions.json")
     .then(response => {
       return response.json();
     })
-    .then(definitions => {
+    .then(json => {
+      definitions = json;
       if (document.readySate == "loading") {
         
-        document.addEventListener("DOMContentLoaded", () => create_all_tooltips(definitions));
+        document.addEventListener("DOMContentLoaded", () => create_all_tooltips());
       } else {
-        create_all_tooltips(definitions);
+        create_all_tooltips();
       }
+
+      
+      const search_results_list = document.getElementsByClassName('search-list')[0]; 
+      const config = { attributes: false, childList: true, subtree: false }; 
+
+      const callback = (mutationList, observer) => {
+        for (const mutation of mutationList) {
+          if (mutation.type === "childList") {
+            let terms = search_results_list.getElementsByClassName("term");
+            for (t of terms) {
+              const term = t.getAttribute("data-term");
+              create_tooltip(t, term, definitions[term]);
+              position_tooltip(t);
+            }
+          }
+        }
+      };
+      const observer = new MutationObserver(callback);
+      observer.observe(search_results_list, config);
     });
 
-  function create_all_tooltips(definitions) {
+  function create_all_tooltips() {
     let terms = document.getElementsByClassName("term");
     for (t of terms) {
       const term = t.getAttribute("data-term");
@@ -713,7 +756,6 @@
 
     let inner = document.createElement("span");
     inner.setAttribute("class", "definition-inner text-sm");
-    inner.setAttribute("id", tooltip_id);
     inner.innerHTML = defn;
 
     outer.appendChild(inner);
